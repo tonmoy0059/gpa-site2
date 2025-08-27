@@ -12,7 +12,7 @@
     tailwind.config = {
       theme: {
         extend: {
-          colors: { gpa: { deep: '#0E1B6C', cta: '#000F91' } },
+          colors: { gpa: { deep: '#0E1B6C', cta: '#000F91', soft:'#6D5AE6' } },
           fontFamily: { sans: ['Inter','ui-sans-serif','system-ui','-apple-system','Segoe UI','Roboto','Helvetica','Arial','sans-serif'] },
           boxShadow: { soft: '0 10px 30px rgba(31,38,135,.12)' }
         }
@@ -28,7 +28,6 @@
     .headline-accent{ background:linear-gradient(90deg,#6D5AE6 0%,#B084F6 50%,#9AB2FF 100%);-webkit-background-clip:text;background-clip:text;color:transparent }
     .card{ background:linear-gradient(180deg,rgba(255,255,255,.85) 0%,rgba(245,243,255,.9) 100%); border:1px solid var(--bg2) }
     .cta{ background:#000F91;color:#fff }
-    .dots{ background-image: radial-gradient(#D8D1FF 1px, transparent 1px); background-size: 24px 24px; }
   </style>
 </head>
 <body class="font-sans antialiased">
@@ -49,25 +48,83 @@
   </div>
 </header>
 
-<main class="pt-16">
+<main class="pt-12">
   <div class="wrap">
     <div class="card rounded-3xl p-10 shadow-soft">
       <h1 class="text-4xl md:text-5xl font-extrabold headline">Check Out <span class="headline-accent">Blogs</span></h1>
       <p class="mt-3 text-gpa-deep/75 max-w-2xl">Deep-dives, tips and strategies from mentors who’ve been there.</p>
     </div>
+
     <div class="grid md:grid-cols-2 gap-8 mt-10">
-      <article class="card rounded-2xl p-6">
-        <div class="h-40 w-full rounded-xl bg-gradient-to-br from-[#6D5AE6]/30 to-[#B084F6]/30 border border-[color:var(--bg2)]"></div>
-        <h2 class="mt-5 text-2xl font-semibold text-gpa-deep">How to Build an Olympiad Study System</h2>
-        <p class="mt-2 text-gpa-deep/80">A practical framework for balancing concepts, speed practice, and contest simulations.</p>
-        <a href="#" class="inline-block mt-3 text-gpa-deep underline">Read more</a>
+
+      <!-- ECON -->
+      <article class="card rounded-2xl shadow-soft overflow-hidden">
+        <a href="/blogs/economics-olympiad.html" class="block">
+          <img src="/uploads/blogs/econ.jpg" alt="Economics Olympiad" class="w-full aspect-[16/9] object-cover">
+        </a>
+        <div class="p-6">
+          <h2 class="text-2xl font-semibold text-gpa-deep">
+            <a href="/blogs/economics-olympiad.html">The Hunger Games of Money and Markets</a>
+          </h2>
+          <div class="mt-2">
+            <span class="inline-flex items-center gap-2 text-sm font-medium px-3 py-1 rounded-full bg-gpa-soft/10 text-gpa-deep border border-[color:var(--bg2)]">Economics</span>
+          </div>
+          <p class="mt-3 text-gpa-deep/80">Inside the Economics Olympiad—financial blitz rounds, billion-dollar case battles, and Bangladesh’s rapid rise on the world stage.</p>
+          <a href="/blogs/economics-olympiad.html" class="mt-4 inline-block text-gpa-deep font-semibold hover:underline">Read more</a>
+        </div>
       </article>
-      <article class="card rounded-2xl p-6">
-        <div class="h-40 w-full rounded-xl bg-gradient-to-br from-[#9AB2FF]/30 to-[#B084F6]/30 border border-[color:var(--bg2)]"></div>
-        <h2 class="mt-5 text-2xl font-semibold text-gpa-deep">Top 10 Competition Mistakes (and Fixes)</h2>
-        <p class="mt-2 text-gpa-deep/80">Timing errors, tunnel vision, weak review loops—here’s how to avoid them and climb ranks.</p>
-        <a href="#" class="inline-block mt-3 text-gpa-deep underline">Read more</a>
+
+      <!-- MATHS -->
+      <article class="card rounded-2xl shadow-soft overflow-hidden">
+        <a href="/blogs/maths-olympiad.html" class="block">
+          <img src="/uploads/blogs/maths.jpg" alt="Math Olympiad" class="w-full aspect-[16/9] object-cover">
+        </a>
+        <div class="p-6">
+          <h2 class="text-2xl font-semibold text-gpa-deep">
+            <a href="/blogs/maths-olympiad.html">From 3 Points to Gold</a>
+          </h2>
+          <div class="mt-2">
+            <span class="inline-flex items-center gap-2 text-sm font-medium px-3 py-1 rounded-full bg-gpa-soft/10 text-gpa-deep border border-[color:var(--bg2)]">Maths</span>
+          </div>
+          <p class="mt-3 text-gpa-deep/80">Bangladesh’s Math Olympiad revolution—grassroots festivals, brutal proofs, and the journey from underdogs to gold medalists.</p>
+          <a href="/blogs/maths-olympiad.html" class="mt-4 inline-block text-gpa-deep font-semibold hover:underline">Read more</a>
+        </div>
       </article>
+
+      <!-- PHYSICS -->
+      <article class="card rounded-2xl shadow-soft overflow-hidden">
+        <a href="/blogs/physics-olympiad.html" class="block">
+          <img src="/uploads/blogs/physics.jpg" alt="Physics Olympiad" class="w-full aspect-[16/9] object-cover">
+        </a>
+        <div class="p-6">
+          <h2 class="text-2xl font-semibold text-gpa-deep">
+            <a href="/blogs/physics-olympiad.html">Bending Light & Breaking Barriers</a>
+          </h2>
+          <div class="mt-2">
+            <span class="inline-flex items-center gap-2 text-sm font-medium px-3 py-1 rounded-full bg-gpa-soft/10 text-gpa-deep border border-[color:var(--bg2)]">Physics</span>
+          </div>
+          <p class="mt-3 text-gpa-deep/80">Inside IPhO: five-hour theory marathons, MacGyver-style experiments—and Bangladesh’s medal-winning rise.</p>
+          <a href="/blogs/physics-olympiad.html" class="mt-4 inline-block text-gpa-deep font-semibold hover:underline">Read more</a>
+        </div>
+      </article>
+
+      <!-- NEO -->
+      <article class="card rounded-2xl shadow-soft overflow-hidden">
+        <a href="/blogs/earth-olympiad-neo.html" class="block">
+          <img src="/uploads/blogs/neo.jpg" alt="Earth Science Olympiad NEO" class="w-full aspect-[16/9] object-cover">
+        </a>
+        <div class="p-6">
+          <h2 class="text-2xl font-semibold text-gpa-deep">
+            <a href="/blogs/earth-olympiad-neo.html">Rocks, Stars & Teen Superstars</a>
+          </h2>
+          <div class="mt-2">
+            <span class="inline-flex items-center gap-2 text-sm font-medium px-3 py-1 rounded-full bg-gpa-soft/10 text-gpa-deep border border-[color:var(--bg2)]">NEO / Earth Science</span>
+          </div>
+          <p class="mt-3 text-gpa-deep/80">Meet the Olympiad that mixes geology, oceans, weather & space—and why NEO turns students into earth-savvy problem solvers.</p>
+          <a href="/blogs/earth-olympiad-neo.html" class="mt-4 inline-block text-gpa-deep font-semibold hover:underline">Read more</a>
+        </div>
+      </article>
+
     </div>
   </div>
 </main>
@@ -80,3 +137,4 @@
 </footer>
 </body>
 </html>
+
