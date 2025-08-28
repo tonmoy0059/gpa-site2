@@ -20,6 +20,7 @@
     }
   </script>
   <style>
+    .logo-white { filter: brightness(0) invert(1); opacity:.9; }
     :root { --bg0:#FBFAFF; --bg1:#F1EEFF; --bg2:#D8D1FF; --blob:#6D5AE6; }
     body{ background: radial-gradient(900px 600px at 80% 70%, rgba(109,90,230,.28), transparent 60%), linear-gradient(180deg, var(--bg0) 0%, var(--bg1) 55%, var(--bg2) 100%); color:#0E1330; }
     .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
@@ -35,10 +36,10 @@
 <header class="pt-6">
   <div class="wrap">
     <nav class="flex items-center justify-between glass px-4 py-3 rounded-2xl">
-      <a href="/index.html" class="flex items-center gap-3">
-        <span class="inline-flex h-8 w-8 items-center justify-center rounded-full ring-2 ring-[color:var(--blob)]"><span class="block h-3 w-3 rounded-sm bg-[color:var(--blob)]"></span></span>
-        <span class="font-semibold text-gpa-deep">Genius Prep Academy</span>
-      </a>
+     <a href="/index.html" class="flex items-center gap-3">
+  <img src="/uploads/gpa-logo.svg" alt="Genius Prep Academy" class="h-8 w-8 object-contain rounded-md" />
+  <span class="font-semibold text-gpa-deep">Genius Prep Academy</span>
+</a>
       <ul class="hidden md:flex items-center gap-8 text-sm text-gpa-deep/80">
         <li><a href="/courses.html" class="hover:text-gpa-deep">Courses</a></li>
         <li><a href="/blog.html" class="hover:text-gpa-deep">Blog</a></li>
@@ -53,6 +54,8 @@
   <div class="wrap">
     <!-- Hero -->
     <section class="card rounded-3xl p-8 md:p-12 shadow-soft flex flex-col md:flex-row gap-10 items-center">
+      <img src="/uploads/gpa-logo.svg" alt="Genius Prep Academy" class="absolute left-6 top-6 h-10 w-auto logo-white" />
+
       <div class="flex-1">
         <div class="text-xs tracking-widest text-gpa-deep/60 mb-3">BEGINNER → ADVANCE</div>
         <h1 class="text-4xl md:text-6xl font-extrabold headline leading-tight">
