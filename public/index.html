@@ -18,79 +18,90 @@
         }
       }
     }
-  </script>
 <style>
   :root{
-    /* brand palette from your Canva mock */
-    --cream:#FBF6F3;         /* page background */
-    --rose-50:#FCEBEC;       /* lightest tiles */
-    --rose-100:#F9DEE2;      /* chips / tiles */
-    --rose-200:#F6CDD6;      /* hover / deeper tile */
-    --rose-400:#EAA0B1;      /* accents */
-    --rose-600:#C86A82;      /* CTA/links */
-    --ink:#111827;           /* primary text */
+    /* palette from your Canva */
+    --cream:#FBF6F3;
+    --rose-50:#FCEBEC;
+    --rose-100:#F9DEE2;
+    --rose-200:#F6CDD6;
+    --rose-400:#EAA0B1;
+    --rose-600:#C86A82;
+    --ink:#111827;
+    --hero-offset: 140px;  /* header + promo bar approx; tweak if needed */
   }
-  body{
-    background: var(--cream);
-    color: var(--ink);
-  }
+  body{ background:var(--cream); color:var(--ink); }
 
-  /* shared look */
   .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
-  .shadow-soft{ box-shadow: 0 10px 30px rgba(17,24,39,.08) }
+  .shadow-soft{ box-shadow:0 10px 30px rgba(17,24,39,.08) }
 
-  /* chips */
+  /* top promo bar */
+  .topbar{ background:#EFC3CB; color:#5a2e3b; font-weight:600; }
+
+  /* CHIPS (left) */
   .chip{
     display:inline-flex;align-items:center;gap:.5rem;
-    padding:.5rem 1rem;border-radius:9999px;
-    background:var(--rose-100);border:1px solid var(--rose-200);
-    color:#2b2b2b;font-weight:600;
+    padding:.5rem 1rem;border-radius:9999px;font-weight:700;
+    background:var(--rose-100); border:1px solid var(--rose-200); color:#2b2b2b;
     transition:background .15s ease, transform .05s ease;
   }
   .chip:hover{ background:var(--rose-200) }
   .chip:active{ transform:translateY(1px) }
 
-  /* tiles (right mosaic) */
-  .tile{
-    background:var(--rose-100);
-    border-radius:1.25rem;
-    display:flex;align-items:center;justify-content:center;
-    padding:1rem; color:#9c3e57; /* dusty line-art color */
-    border:1px solid var(--rose-200);
-  }
-  .tile h1,.tile .sym{
-    font-weight:800; letter-spacing:.5px;
-  }
-
-  /* hero type */
   .kicker{ letter-spacing:.14em; color:#6b7280 }
   .headline{ font-weight:900; line-height:1.1 }
-  .headline em{
-    font-style:italic;color:var(--rose-600)
+  .headline em{ font-style:italic; color:var(--rose-600) }
+
+  /* HERO should fit the first screen */
+  .hero-fit{
+    min-height: calc(100svh - var(--hero-offset));
+    display:flex; align-items:center;
   }
 
-  /* CTA button */
-  .btn-ghost{
-    background:#fff;border:1px solid var(--rose-200);
-    color:var(--ink);border-radius:9999px;
-    padding:.6rem 1.1rem;font-weight:700;
+  /* TILE styles */
+  .tile{
+    background:var(--rose-100); border:1px solid var(--rose-200);
+    border-radius:1.25rem; display:flex; align-items:center; justify-content:center;
+    padding:1rem; overflow:hidden;
   }
-  .btn-ghost:hover{ background:#fff; border-color:var(--rose-400) }
+  .tile-img{ width:75%; height:auto; object-fit:contain; }
+  .tile-symbol{ color:#9c3e57; font-weight:800; }
 
-  /* keep existing blue CTA for later sections if you want */
-  .cta{ background:#000F91;color:#fff }
-
-  /* top promo bar */
-  .topbar{
-    background:#EFC3CB; color:#5a2e3b; font-weight:600;
+  /* MOSAIC — EXACT CANVA LAYOUT (4 cols x 4 rows) */
+  .mosaic-olympiad{
+    --cell: clamp(76px, 9.5vw, 120px);   /* responsive cell size */
+    display:grid;
+    grid-template-columns: repeat(4, var(--cell));
+    grid-template-rows: repeat(4, var(--cell));
+    gap: 18px;
+    grid-template-areas:
+      "globe pi pi emc"
+      "chess pi pi emc"
+      "chess pi pi laptop"
+      "chess money money laptop";
   }
+  .area-globe { grid-area: globe; }
+  .area-pi    { grid-area: pi; }
+  .area-emc   { grid-area: emc; }
+  .area-chess { grid-area: chess; }
+  .area-money { grid-area: money; }
+  .area-laptop{ grid-area: laptop; }
 
-  /* round logo to light-on-pink variant if needed */
-  .logo-white{ filter:brightness(0) invert(1) saturate(0) opacity:.95 }
-
-  /* grid helper for the mosaic so spans have predictable height */
-  .mosaic{ grid-auto-rows: 88px; }
-  @media (min-width: 1024px){ .mosaic{ grid-auto-rows: 100px; } }
+  /* MOBILE layout — tidy stack that still feels designed */
+  @media (max-width: 768px){
+    .mosaic-olympiad{
+      --cell: clamp(92px, 26vw, 140px);
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(6, var(--cell));
+      grid-template-areas:
+        "pi pi"
+        "pi pi"
+        "globe emc"
+        "chess chess"
+        "money money"
+        "laptop laptop";
+    }
+  }
 </style>
 
 </head>
@@ -120,9 +131,10 @@
   <div class="wrap">
 <!-- Hero -->
 <!-- HERO (replicates your Canva layout) -->
-<section class="rounded-3xl p-6 md:p-10 shadow-soft" style="background:#FFF7F6;border:1px solid var(--rose-100);">
-  <div class="grid lg:grid-cols-2 gap-10 items-center">
-    <!-- Left copy + chips -->
+<!-- HERO (fits screen + exact mosaic) -->
+<section class="hero-fit rounded-3xl p-6 md:p-10 shadow-soft" style="background:#FFF7F6;border:1px solid var(--rose-100);">
+  <div class="grid lg:grid-cols-2 gap-10 items-center w-full">
+    <!-- LEFT: heading + chips -->
     <div>
       <div class="kicker text-xs mb-3">BEGINNER → ADVANCED</div>
       <h1 class="headline text-4xl md:text-5xl">
@@ -130,9 +142,8 @@
       </h1>
 
       <div class="mt-8 grid grid-cols-2 gap-3 max-w-md">
-        <!-- chips (use your real icons where noted) -->
         <a href="/courses.html#maths" class="chip"><span>π</span><span>Maths</span></a>
-        <a href="/courses.html#economics" class="chip"><span>₼</span><span>Economics</span></a>
+        <a href="/courses.html#economics" class="chip"><span>₮</span><span>Economics</span></a>
 
         <a href="/courses.html#earth" class="chip"><span>🌍</span><span>Earth Science</span></a>
         <a href="/courses.html#physics" class="chip"><span>E=mc²</span><span>Physics</span></a>
@@ -142,30 +153,37 @@
       </div>
     </div>
 
-    <!-- Right mosaic (rounded tiles) -->
-    <div>
-      <div class="grid mosaic grid-cols-3 gap-5">
-        <!-- small square -->
-        <div class="tile col-span-1 row-span-2"><span class="sym text-4xl">🌍</span></div>
+    <!-- RIGHT: CANVA MOSAIC -->
+    <div class="mosaic-olympiad mx-auto">
+      <!-- swap these <span> placeholders with your PNGs when ready -->
+      <div class="tile area-globe">
+        <!-- <img src="/uploads/tiles/globe.png" alt="Globe" class="tile-img"> -->
+        <span class="tile-symbol text-3xl">🌍</span>
+      </div>
 
-        <!-- big tall π tile -->
-        <div class="tile col-span-2 row-span-3">
-          <span class="sym" style="font-size:96px; line-height:0.9;">π</span>
-        </div>
+      <div class="tile area-pi">
+        <!-- <img src="/uploads/tiles/pi.png" alt="Pi" class="tile-img"> -->
+        <span class="tile-symbol" style="font-size:96px; line-height:0.9;">π</span>
+      </div>
 
-        <!-- vertical E=mc2 tile -->
-        <div class="tile col-span-1 row-span-2"><span class="sym font-extrabold text-2xl">E=mc²</span></div>
+      <div class="tile area-emc">
+        <!-- <img src="/uploads/tiles/emc.png" alt="E=mc²" class="tile-img"> -->
+        <span class="tile-symbol text-2xl">E=mc²</span>
+      </div>
 
-        <!-- chess tile -->
-        <div class="tile col-span-2 row-span-2">
-          <span class="sym text-5xl">♖</span>
-        </div>
+      <div class="tile area-chess">
+        <!-- <img src="/uploads/tiles/chess.png" alt="Chess" class="tile-img"> -->
+        <span class="tile-symbol text-5xl">♖</span>
+      </div>
 
-        <!-- money tile -->
-        <div class="tile col-span-1 row-span-2"><span class="sym text-3xl">₮</span></div>
+      <div class="tile area-money">
+        <!-- <img src="/uploads/tiles/money.png" alt="Economics" class="tile-img"> -->
+        <span class="tile-symbol text-3xl">₮</span>
+      </div>
 
-        <!-- laptop tile -->
-        <div class="tile col-span-1 row-span-2"><span class="sym text-3xl">💻</span></div>
+      <div class="tile area-laptop">
+        <!-- <img src="/uploads/tiles/laptop.png" alt="Informatics" class="tile-img"> -->
+        <span class="tile-symbol text-3xl">💻</span>
       </div>
     </div>
   </div>
