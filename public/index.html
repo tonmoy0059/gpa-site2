@@ -142,41 +142,66 @@ nav a:hover {
       font-weight: 800;
     }
     /* MOSAIC — EXACT CANVA LAYOUT (4 cols x 4 rows) */
-    .mosaic-olympiad {
-      --cell: clamp(76px, 9.5vw, 120px); /* responsive cell size */
-      display: grid;
-      grid-template-columns: repeat(4, var(--cell));
-      grid-template-rows: repeat(4, var(--cell));
-      gap: 18px;
-      grid-template-areas: "globe pi pi emc" "chess pi pi emc" "chess pi pi laptop" "chess money money laptop";
-    }
-    .area-globe {
-      grid-area: globe;
-    }
-    .area-pi {
-      grid-area: pi;
-    }
-    .area-emc {
-      grid-area: emc;
-    }
-    .area-chess {
-      grid-area: chess;
-    }
-    .area-money {
-      grid-area: money;
-    }
-    .area-laptop {
-      grid-area: laptop;
-    }
-    /* MOBILE layout — tidy stack that still feels designed */
-    @media (max-width: 768px) {
-      .mosaic-olympiad {
-        --cell: clamp(92px, 26vw, 140px);
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(6, var(--cell));
-        grid-template-areas: "pi pi" "pi pi" "globe emc" "chess chess" "money money" "laptop laptop";
-      }
-    }
+/* Modify the section containing the grid layout for mosaic blocks */
+
+/* Mosaic Grid Layout — More dynamic grid with different item sizes */
+.mosaic-olympiad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;  /* Allow rows to adjust dynamically */
+  gap: 20px;
+  grid-template-areas: 
+    "globe pi pi emc"
+    "chess pi pi emc"
+    "chess money money laptop"
+    "chess laptop laptop laptop";
+}
+
+/* Styling for each individual tile (grid item) */
+.tile {
+  background: var(--rose-100);
+  border: 1px solid var(--rose-200);
+  border-radius: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+/* Adjust the size and position of individual grid items */
+.area-globe {
+  grid-area: globe;
+}
+.area-pi {
+  grid-area: pi;
+}
+.area-emc {
+  grid-area: emc;
+}
+.area-chess {
+  grid-area: chess;
+}
+.area-money {
+  grid-area: money;
+}
+.area-laptop {
+  grid-area: laptop;
+}
+
+/* Responsive Design: Making sure it looks good on mobile */
+@media (max-width: 768px) {
+  .mosaic-olympiad {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+      "pi pi"
+      "globe emc"
+      "chess chess"
+      "money money"
+      "laptop laptop";
+  }
+}
+
   </style>
 </head>
 <body class="font-sans antialiased">
