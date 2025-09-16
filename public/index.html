@@ -4,9 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Home — Genius Prep Academy</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -19,8 +21,10 @@
       }
     }
   </script>
+  
   <style>
     :root{
+      /* palette from your Canva */
       --cream:#FBF6F3;
       --rose-50:#FCEBEC;
       --rose-100:#F9DEE2;
@@ -28,21 +32,25 @@
       --rose-400:#EAA0B1;
       --rose-600:#C86A82;
       --ink:#111827;
-      --hero-offset: 140px;
+      --hero-offset: 140px;  /* header + promo bar approx; tweak if needed */
     }
+
     body{ background:var(--cream); color:var(--ink); }
 
     .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
     .shadow-soft{ box-shadow:0 10px 30px rgba(17,24,39,.08) }
 
+    /* top promo bar */
     .topbar{ background:#EFC3CB; color:#5a2e3b; font-weight:600; }
 
+    /* CHIPS (left) */
     .chip{
       display:inline-flex;align-items:center;gap:.5rem;
       padding:.5rem 1rem;border-radius:9999px;font-weight:700;
       background:var(--rose-100); border:1px solid var(--rose-200); color:#2b2b2b;
       transition:background .15s ease, transform .05s ease;
     }
+
     .chip:hover{ background:var(--rose-200) }
     .chip:active{ transform:translateY(1px) }
 
@@ -50,11 +58,13 @@
     .headline{ font-weight:900; line-height:1.1 }
     .headline em{ font-style:italic; color:var(--rose-600) }
 
+    /* HERO should fit the first screen */
     .hero-fit{
       min-height: calc(100svh - var(--hero-offset));
       display:flex; align-items:center;
     }
 
+    /* TILE styles */
     .tile{
       background:var(--rose-100); border:1px solid var(--rose-200);
       border-radius:1.25rem; display:flex; align-items:center; justify-content:center;
@@ -64,8 +74,9 @@
     .tile-img{ width:80%; height:auto; object-fit:contain; }
     .tile-symbol{ color:#9c3e57; font-weight:800; }
 
+    /* MOSAIC — EXACT CANVA LAYOUT (4 cols x 4 rows) */
     .mosaic-olympiad{
-      --cell: clamp(76px, 9.5vw, 120px);
+      --cell: clamp(76px, 9.5vw, 120px);   /* responsive cell size */
       display:grid;
       grid-template-columns: repeat(4, var(--cell));
       grid-template-rows: repeat(4, var(--cell));
@@ -77,6 +88,14 @@
         "chess money money laptop";
     }
 
+    .area-globe { grid-area: globe; }
+    .area-pi    { grid-area: pi; }
+    .area-emc   { grid-area: emc; }
+    .area-chess { grid-area: chess; }
+    .area-money { grid-area: money; }
+    .area-laptop{ grid-area: laptop; }
+
+    /* MOBILE layout — tidy stack that still feels designed */
     @media (max-width: 768px){
       .mosaic-olympiad{
         --cell: clamp(92px, 26vw, 140px);
@@ -94,11 +113,13 @@
   </style>
 
 </head>
+
 <body class="font-sans antialiased">
   <div class="topbar text-center text-sm py-2">
     Get 20% off by registering early!
     <a href="/courses.html#promo" class="underline font-extrabold" style="color:#7a3045">Register now</a>
   </div>
+  
   <header class="pt-6">
     <div class="wrap">
       <nav class="flex items-center justify-between glass px-4 py-3 rounded-2xl">
