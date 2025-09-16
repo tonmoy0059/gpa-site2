@@ -23,60 +23,59 @@
   </script>
 
 <style>
-  /* Style for the mosaic grid */
+  /* Mosaic grid with flexible layout */
   .mosaic-olympiad {
-    --cell: clamp(90px, 20vw, 160px);   /* Responsive cell size */
     display: grid;
-    grid-template-columns: repeat(3, var(--cell)); /* First row - 3 blocks */
-    grid-template-rows: repeat(2, var(--cell)); /* Second row - 2 blocks */
-    gap: 15px;  /* Equal space between blocks */
+    grid-template-columns: repeat(3, 1fr);  /* 3 columns */
+    grid-template-rows: 1fr 1fr;   /* 2 rows */
+    gap: 20px;
     grid-template-areas:
-      "globe pi pi"      /* First row: 3 blocks */
-      "chess money laptop";  /* Second row: 3 blocks with the larger last block */
-  }
-  
-  /* Tiles */
-  .tile {
-    background: var(--rose-100); 
-    border: 1px solid var(--rose-200);
-    border-radius: 1.25rem; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center;
-    padding: 1rem; 
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(17, 24, 39, 0.08);  /* Soft shadow for aesthetic */
+      "globe pi pi"      /* The first row: globe and pi breaking out */
+      "chess laptop money"; /* The second row: chess overlaps and laptop takes space */
   }
 
+  /* Tile style */
+  .tile {
+    background: var(--rose-100);
+    border: 1px solid var(--rose-200);
+    border-radius: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    box-shadow: 0 10px 30px rgba(17, 24, 39, 0.08);  /* Soft shadow */
+    overflow: hidden;
+  }
+
+  /* Specific tile image */
   .tile-img {
-    width: 85%;
+    width: 80%;
     height: auto;
     object-fit: contain;
   }
 
+  /* Symbols for the tiles */
   .tile-symbol {
+    font-size: 3rem;  /* Adjust the font size for icons */
     color: #9C3E57;
     font-weight: 800;
   }
 
-  /* Mapping to specific grid layout areas */
+  /* Custom grid areas */
   .area-globe { grid-area: globe; }
-  .area-pi { grid-area: pi; }
-  .area-emc { grid-area: emc; }
+  .area-pi    { grid-area: pi; }
   .area-chess { grid-area: chess; }
+  .area-laptop{ grid-area: laptop; }
   .area-money { grid-area: money; }
-  .area-laptop { grid-area: laptop; }
 
-  /* Mobile Layout - Neat stacking for smaller screens */
+  /* Mobile Layout: 2 columns */
   @media (max-width: 768px) {
     .mosaic-olympiad {
-      --cell: clamp(100px, 30vw, 180px);
       grid-template-columns: repeat(2, 1fr); /* 2 columns */
-      grid-template-rows: repeat(3, var(--cell)); /* 3 rows for 6 blocks */
       grid-template-areas:
-        "globe pi"
-        "chess pi"
-        "money laptop";
+        "pi pi"
+        "globe money"
+        "chess laptop";
     }
   }
 </style>
