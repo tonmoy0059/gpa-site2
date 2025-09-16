@@ -4,122 +4,158 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Home — Genius Prep Academy</title>
-  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          colors: { gpa: { deep: '#0E1B6C', cta: '#000F91' } },
-          fontFamily: { sans: ['Inter','ui-sans-serif','system-ui','-apple-system','Segoe UI','Roboto','Helvetica','Arial','sans-serif'] },
-          boxShadow: { soft: '0 10px 30px rgba(31,38,135,.12)' }
+          colors: {
+            gpa: {
+              deep: '#0E1B6C',
+              cta: '#000F91'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif']
+          },
+          boxShadow: {
+            soft: '0 10px 30px rgba(31,38,135,.12)'
+          }
         }
       }
     }
   </script>
-  
   <style>
-    :root{
-      /* palette from your Canva */
-      --cream:#FBF6F3;
-      --rose-50:#FCEBEC;
-      --rose-100:#F9DEE2;
-      --rose-200:#F6CDD6;
-      --rose-400:#EAA0B1;
-      --rose-600:#C86A82;
-      --ink:#111827;
-      --hero-offset: 140px;  /* header + promo bar approx; tweak if needed */
+    :root {
+      --cream: #FBF6F3;
+      --rose-50: #FCEBEC;
+      --rose-100: #F9DEE2;
+      --rose-200: #F6CDD6;
+      --rose-400: #EAA0B1;
+      --rose-600: #C86A82;
+      --ink: #111827;
+      --hero-offset: 140px; /* header + promo bar approx; tweak if needed */
     }
-
-    body{ background:var(--cream); color:var(--ink); }
-
-    .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
-    .shadow-soft{ box-shadow:0 10px 30px rgba(17,24,39,.08) }
-
+    body {
+      background: var(--cream);
+      color: var(--ink);
+    }
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .shadow-soft {
+      box-shadow: 0 10px 30px rgba(17,24,39,.08);
+    }
     /* top promo bar */
-    .topbar{ background:#EFC3CB; color:#5a2e3b; font-weight:600; }
-
+    .topbar {
+      background: #EFC3CB;
+      color: #5a2e3b;
+      font-weight: 600;
+    }
     /* CHIPS (left) */
-    .chip{
-      display:inline-flex;align-items:center;gap:.5rem;
-      padding:.5rem 1rem;border-radius:9999px;font-weight:700;
-      background:var(--rose-100); border:1px solid var(--rose-200); color:#2b2b2b;
-      transition:background .15s ease, transform .05s ease;
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .5rem 1rem;
+      border-radius: 9999px;
+      font-weight: 700;
+      background: var(--rose-100);
+      border: 1px solid var(--rose-200);
+      color: #2b2b2b;
+      transition: background .15s ease, transform .05s ease;
     }
-
-    .chip:hover{ background:var(--rose-200) }
-    .chip:active{ transform:translateY(1px) }
-
-    .kicker{ letter-spacing:.14em; color:#6b7280 }
-    .headline{ font-weight:900; line-height:1.1 }
-    .headline em{ font-style:italic; color:var(--rose-600) }
-
+    .chip:hover {
+      background: var(--rose-200);
+    }
+    .chip:active {
+      transform: translateY(1px);
+    }
+    .kicker {
+      letter-spacing: .14em;
+      color: #6b7280;
+    }
+    .headline {
+      font-weight: 900;
+      line-height: 1.1;
+    }
+    .headline em {
+      font-style: italic;
+      color: var(--rose-600);
+    }
     /* HERO should fit the first screen */
-    .hero-fit{
+    .hero-fit {
       min-height: calc(100svh - var(--hero-offset));
-      display:flex; align-items:center;
+      display: flex;
+      align-items: center;
     }
-
     /* TILE styles */
-    .tile{
-      background:var(--rose-100); border:1px solid var(--rose-200);
-      border-radius:1.25rem; display:flex; align-items:center; justify-content:center;
-      padding:1rem; overflow:hidden;
+    .tile {
+      background: var(--rose-100);
+      border: 1px solid var(--rose-200);
+      border-radius: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      overflow: hidden;
     }
-
-    .tile-img{ width:80%; height:auto; object-fit:contain; }
-    .tile-symbol{ color:#9c3e57; font-weight:800; }
-
+    .tile-img {
+      width: 75%;
+      height: auto;
+      object-fit: contain;
+    }
+    .tile-symbol {
+      color: #9c3e57;
+      font-weight: 800;
+    }
     /* MOSAIC — EXACT CANVA LAYOUT (4 cols x 4 rows) */
-    .mosaic-olympiad{
-      --cell: clamp(76px, 9.5vw, 120px);   /* responsive cell size */
-      display:grid;
+    .mosaic-olympiad {
+      --cell: clamp(76px, 9.5vw, 120px); /* responsive cell size */
+      display: grid;
       grid-template-columns: repeat(4, var(--cell));
       grid-template-rows: repeat(4, var(--cell));
       gap: 18px;
-      grid-template-areas:
-        "globe pi pi emc"
-        "chess pi pi emc"
-        "chess pi pi laptop"
-        "chess money money laptop";
+      grid-template-areas: "globe pi pi emc" "chess pi pi emc" "chess pi pi laptop" "chess money money laptop";
     }
-
-    .area-globe { grid-area: globe; }
-    .area-pi    { grid-area: pi; }
-    .area-emc   { grid-area: emc; }
-    .area-chess { grid-area: chess; }
-    .area-money { grid-area: money; }
-    .area-laptop{ grid-area: laptop; }
-
+    .area-globe {
+      grid-area: globe;
+    }
+    .area-pi {
+      grid-area: pi;
+    }
+    .area-emc {
+      grid-area: emc;
+    }
+    .area-chess {
+      grid-area: chess;
+    }
+    .area-money {
+      grid-area: money;
+    }
+    .area-laptop {
+      grid-area: laptop;
+    }
     /* MOBILE layout — tidy stack that still feels designed */
-    @media (max-width: 768px){
-      .mosaic-olympiad{
+    @media (max-width: 768px) {
+      .mosaic-olympiad {
         --cell: clamp(92px, 26vw, 140px);
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(6, var(--cell));
-        grid-template-areas:
-          "pi pi"
-          "pi pi"
-          "globe emc"
-          "chess chess"
-          "money money"
-          "laptop laptop";
+        grid-template-areas: "pi pi" "pi pi" "globe emc" "chess chess" "money money" "laptop laptop";
       }
     }
   </style>
-
 </head>
-
 <body class="font-sans antialiased">
   <div class="topbar text-center text-sm py-2">
-    Get 20% off by registering early!
-    <a href="/courses.html#promo" class="underline font-extrabold" style="color:#7a3045">Register now</a>
+    Get 20% off by registering early! <a href="/courses.html#promo" class="underline font-extrabold" style="color:#7a3045">Register now</a>
   </div>
-  
   <header class="pt-6">
     <div class="wrap">
       <nav class="flex items-center justify-between glass px-4 py-3 rounded-2xl">
@@ -136,19 +172,14 @@
       </nav>
     </div>
   </header>
-
   <main class="pt-16">
     <div class="wrap">
       <!-- Hero -->
       <section class="hero-fit rounded-3xl p-6 md:p-10 shadow-soft" style="background:#FFF7F6;border:1px solid var(--rose-100);">
         <div class="grid lg:grid-cols-2 gap-10 items-center w-full">
-          <!-- LEFT: heading + chips -->
           <div>
             <div class="kicker text-xs mb-3">BEGINNER → ADVANCED</div>
-            <h1 class="headline text-4xl md:text-5xl">
-              Which <em>Olympiad</em><br>do you want to master?
-            </h1>
-
+            <h1 class="headline text-4xl md:text-5xl"> Which <em>Olympiad</em><br>do you want to master? </h1>
             <div class="mt-8 grid grid-cols-2 gap-3 max-w-md">
               <a href="/courses.html#maths" class="chip"><span>π</span><span>Maths</span></a>
               <a href="/courses.html#economics" class="chip"><span>₮</span><span>Economics</span></a>
@@ -158,45 +189,104 @@
               <a href="/courses.html#informatics" class="chip"><span>⌘</span><span>Informatics</span></a>
             </div>
           </div>
-
-          <!-- RIGHT: CANVA MOSAIC -->
           <div class="mosaic-olympiad mx-auto">
-            <!-- swap these <span> placeholders with your PNGs when ready -->
             <div class="tile area-globe">
-              <!-- <img src="/uploads/tiles/globe.png" alt="Globe" class="tile-img"> -->
               <span class="tile-symbol text-3xl">🌍</span>
             </div>
-
             <div class="tile area-pi">
-              <!-- <img src="/uploads/tiles/pi.png" alt="Pi" class="tile-img"> -->
               <span class="tile-symbol" style="font-size:96px; line-height:0.9;">π</span>
             </div>
-
             <div class="tile area-emc">
-              <!-- <img src="/uploads/tiles/emc.png" alt="E=mc²" class="tile-img"> -->
               <span class="tile-symbol text-2xl">E=mc²</span>
             </div>
-
             <div class="tile area-chess">
-              <!-- <img src="/uploads/tiles/chess.png" alt="Chess" class="tile-img"> -->
               <span class="tile-symbol text-5xl">♖</span>
             </div>
-
             <div class="tile area-money">
-              <!-- <img src="/uploads/tiles/money.png" alt="Economics" class="tile-img"> -->
               <span class="tile-symbol text-3xl">₮</span>
             </div>
-
             <div class="tile area-laptop">
-              <!-- <img src="/uploads/tiles/laptop.png" alt="Informatics" class="tile-img"> -->
               <span class="tile-symbol text-3xl">💻</span>
             </div>
           </div>
         </div>
       </section>
+      <!-- Stats -->
+      <section class="grid md:grid-cols-4 gap-6 mt-6">
+        <div class="card rounded-2xl p-6">
+          <div class="text-4xl font-extrabold text-gpa-deep">4.8</div>
+          <div class="text-sm text-gpa-deep/70">Rating</div>
+        </div>
+        <div class="card rounded-2xl p-6">
+          <div class="text-4xl font-extrabold text-gpa-deep">88%</div>
+          <div class="text-sm text-gpa-deep/70">Success Rate</div>
+        </div>
+        <div class="card rounded-2xl p-6">
+          <div class="text-4xl font-extrabold text-gpa-deep">121</div>
+          <div class="text-sm text-gpa-deep/70">Total Enrolled</div>
+        </div>
+        <div class="card rounded-2xl p-6 grid place-items-center">
+          <a href="/courses.html#enroll" class="cta px-8 py-3 rounded-xl font-semibold">Enroll</a>
+        </div>
+      </section>
+      <!-- Featured Courses preview -->
+      <section class="mt-16">
+        <h2 class="text-3xl md:text-4xl font-extrabold headline">Featured <span class="headline-accent">Courses</span></h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+          <a href="/courses.html" class="card rounded-2xl p-6 hover:shadow-soft transition">
+            <div class="font-semibold text-gpa-deep text-xl">Informatics</div>
+            <img src="/uploads/courses/informatics.svg" class="mt-4 h-28 w-full object-contain" alt="informatics">
+          </a>
+          <a href="/courses.html" class="card rounded-2xl p-6 hover:shadow-soft transition">
+            <div class="font-semibold text-gpa-deep text-xl">Maths</div>
+            <img src="/uploads/courses/maths.svg" class="mt-4 h-28 w-full object-contain" alt="maths">
+          </a>
+          <a href="/courses.html" class="card rounded-2xl p-6 hover:shadow-soft transition">
+            <div class="font-semibold text-gpa-deep text-xl">Physics</div>
+            <img src="/uploads/courses/physics.svg" class="mt-4 h-28 w-full object-contain" alt="physics">
+          </a>
+          <a href="/courses.html" class="card rounded-2xl p-6 hover:shadow-soft transition">
+            <div class="font-semibold text-gpa-deep text-xl">Economics</div>
+            <img src="/uploads/courses/economics.svg" class="mt-4 h-28 w-full object-contain" alt="economics">
+          </a>
+        </div>
+      </section>
+      <!-- Leaders -->
+      <section class="mt-20 card rounded-3xl p-10 dots">
+        <div class="max-w-3xl">
+          <div class="text-xs tracking-widest text-gpa-deep/60 mb-3">The Team Behind</div>
+          <h2 class="text-3xl md:text-4xl font-extrabold headline">The <span class="headline-accent">Team</span></h2>
+          <p class="mt-2 text-gpa-deep/70">You don’t have to trust our word. Meet the team behind the ranks.</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8 mt-8">
+          <!-- Card 1 -->
+          <div class="card bg-[color:var(--bg2)] rounded-3xl p-6 text-center shadow-soft">
+            <div class="relative mx-auto h-40 w-40 rounded-full p-[3px] bg-gradient-to-br from-[#605AE6] to-[#000F91]">
+              <img src="/uploads/thamid1.jpg" alt="Tanvir Thamid" class="h-full w-full rounded-full object-cover" loading="lazy" />
+            </div>
+            <div class="mt-4 font-semibold">Tanvir Thamid</div>
+            <div class="text-sm text-gpa-deep/60">Founder &amp; CEO</div>
+          </div>
+          <!-- Card 2 -->
+          <div class="card bg-[color:var(--bg2)] rounded-3xl p-6 text-center shadow-soft">
+            <div class="relative mx-auto h-40 w-40 rounded-full p-[3px] bg-gradient-to-br from-[#605AE6] to-[#000F91]">
+              <img src="/uploads/labeeb1.jpg" alt="Tasneem Zaman" class="h-full w-full rounded-full object-cover" loading="lazy" />
+            </div>
+            <div class="mt-4 font-semibold">Tasneem Zaman</div>
+            <div class="text-sm text-gpa-deep/60">COO</div>
+          </div>
+          <!-- Card 3 -->
+          <div class="card bg-[color:var(--bg2)] rounded-3xl p-6 text-center shadow-soft">
+            <div class="relative mx-auto h-40 w-40 rounded-full p-[3px] bg-gradient-to-br from-[#605AE6] to-[#000F91]">
+              <img src="/uploads/haadi1.jpg" alt="Istiak Sharafat Sikder" class="h-full w-full rounded-full object-cover" loading="lazy" />
+            </div>
+            <div class="mt-4 font-semibold">Istiak Sharafat Sikder</div>
+            <div class="text-sm text-gpa-deep/60">CMO</div>
+          </div>
+        </div>
+      </section>
     </div>
   </main>
-
   <footer class="bg-white/90 border-t border-[color:var(--bg2)] mt-20">
     <div class="wrap py-10 flex items-center justify-between">
       <div class="text-gpa-deep">© 2025 Genius Prep Academy</div>
