@@ -23,61 +23,63 @@
   </script>
 
 <style>
-  /* Mosaic grid with flexible layout */
+/* Flexible grid layout */
+.mosaic-olympiad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  grid-template-areas:
+    "globe pi pi"   /* First row: Globe & Pi break out */
+    "chess laptop money"   /* Second row: Chess overlaps, laptop expands */
+    "chess money money";   /* Third row: Chess & Money overlap */
+}
+
+/* Tile styling with soft shadow */
+.tile {
+  background: var(--rose-100);
+  border: 1px solid var(--rose-200);
+  border-radius: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  box-shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Specific tile images */
+.tile-img {
+  width: 80%;  /* Fit images within tiles */
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Tile symbols if images are not available */
+.tile-symbol {
+  font-size: 3rem;
+  color: #9C3E57;
+  font-weight: 800;
+}
+
+/* Adjust grid areas for each tile */
+.area-globe { grid-area: globe; }
+.area-pi    { grid-area: pi; }
+.area-chess { grid-area: chess; }
+.area-laptop{ grid-area: laptop; }
+.area-money { grid-area: money; }
+
+/* Responsive mobile layout */
+@media (max-width: 768px) {
   .mosaic-olympiad {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);  /* 3 columns */
-    grid-template-rows: 1fr 1fr;   /* 2 rows */
-    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
     grid-template-areas:
-      "globe pi pi"      /* The first row: globe and pi breaking out */
-      "chess laptop money"; /* The second row: chess overlaps and laptop takes space */
+      "pi pi"
+      "globe money"
+      "chess laptop";
   }
-
-  /* Tile style */
-  .tile {
-    background: var(--rose-100);
-    border: 1px solid var(--rose-200);
-    border-radius: 1.25rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    box-shadow: 0 10px 30px rgba(17, 24, 39, 0.08);  /* Soft shadow */
-    overflow: hidden;
-  }
-
-  /* Specific tile image */
-  .tile-img {
-    width: 80%;
-    height: auto;
-    object-fit: contain;
-  }
-
-  /* Symbols for the tiles */
-  .tile-symbol {
-    font-size: 3rem;  /* Adjust the font size for icons */
-    color: #9C3E57;
-    font-weight: 800;
-  }
-
-  /* Custom grid areas */
-  .area-globe { grid-area: globe; }
-  .area-pi    { grid-area: pi; }
-  .area-chess { grid-area: chess; }
-  .area-laptop{ grid-area: laptop; }
-  .area-money { grid-area: money; }
-
-  /* Mobile Layout: 2 columns */
-  @media (max-width: 768px) {
-    .mosaic-olympiad {
-      grid-template-columns: repeat(2, 1fr); /* 2 columns */
-      grid-template-areas:
-        "pi pi"
-        "globe money"
-        "chess laptop";
-    }
-  }
+}
 </style>
 
 </head>
