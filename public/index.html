@@ -23,63 +23,82 @@
   </script>
 
 <style>
-/* Flexible grid layout */
-.mosaic-olympiad {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  grid-template-areas:
-    "globe pi pi"   /* First row: Globe & Pi break out */
-    "chess laptop money"   /* Second row: Chess overlaps, laptop expands */
-    "chess money money";   /* Third row: Chess & Money overlap */
-}
-
-/* Tile styling with soft shadow */
-.tile {
-  background: var(--rose-100);
-  border: 1px solid var(--rose-200);
-  border-radius: 1.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  box-shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
-  overflow: hidden;
-  position: relative;
-}
-
-/* Specific tile images */
-.tile-img {
-  width: 80%;  /* Fit images within tiles */
-  height: auto;
-  object-fit: contain;
-  object-position: center;
-}
-
-/* Tile symbols if images are not available */
-.tile-symbol {
-  font-size: 3rem;
-  color: #9C3E57;
-  font-weight: 800;
-}
-
-/* Adjust grid areas for each tile */
-.area-globe { grid-area: globe; }
-.area-pi    { grid-area: pi; }
-.area-chess { grid-area: chess; }
-.area-laptop{ grid-area: laptop; }
-.area-money { grid-area: money; }
-
-/* Responsive mobile layout */
-@media (max-width: 768px) {
-  .mosaic-olympiad {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-areas:
-      "pi pi"
-      "globe money"
-      "chess laptop";
+  /* General Layout & Colors */
+  :root {
+    --cream: #FBF6F3;
+    --rose-50: #FCEBEC;
+    --rose-100: #F9DEE2;
+    --rose-200: #F6CDD6;
+    --rose-400: #EAA0B1;
+    --rose-600: #C86A82;
+    --ink: #111827;
+    --hero-offset: 140px;
   }
-}
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* Mosaic Grid (Flexible with 6 blocks) */
+  .mosaic-olympiad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  /* 3 columns */
+    grid-template-rows: repeat(2, 1fr);   /* 2 rows */
+    gap: 20px;
+    grid-template-areas:
+      "globe pi pi"
+      "chess laptop money";
+  }
+
+  .tile {
+    background: var(--rose-100);
+    border: 1px solid var(--rose-200);
+    border-radius: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    box-shadow: 0 10px 30px rgba(17, 24, 39, 0.08);  /* Soft shadow */
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+
+  .tile:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(17, 24, 39, 0.15); /* Highlight hover */
+  }
+
+  /* Tile content styling (Icons or PNGs) */
+  .tile-symbol {
+    font-size: 3rem;
+    color: #9C3E57;
+    font-weight: 800;
+  }
+
+  .tile-img {
+    width: 80%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .area-globe { grid-area: globe; }
+  .area-pi { grid-area: pi; }
+  .area-chess { grid-area: chess; }
+  .area-laptop { grid-area: laptop; }
+  .area-money { grid-area: money; }
+
+  /* Mobile Layout: 2 columns */
+  @media (max-width: 768px) {
+    .mosaic-olympiad {
+      grid-template-columns: repeat(2, 1fr); /* 2 columns */
+      grid-template-areas:
+        "pi pi"
+        "globe money"
+        "chess laptop";
+    }
+  }
 </style>
 
 </head>
