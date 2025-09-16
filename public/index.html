@@ -55,21 +55,23 @@
     /* Add this CSS to the section that contains the .topbar, nav a, and .btn-ghost */
 
 /* Enhanced Topbar (Navigation Bar) Styling */
+/* Update the top bar style */
 .topbar {
-  background: linear-gradient(to right, #FF7F7F, #FF4B4B);  /* Gradient background */
+  background: linear-gradient(to right, #FF7F7F, #FF4B4B);  /* Subtle gradient background */
   color: white;  /* White text color */
-  font-weight: 700;  /* Increased font weight */
-  padding: 12px 24px;  /* Padding around the top bar */
+  font-weight: 700;  /* Bold font */
+  padding: 12px 24px;  /* Padding for spacing */
+  text-align: center;
 }
 
-/* Navigation Links Hover Effect */
+/* Improve the hover effect for nav items */
 nav a:hover {
-  color: #ffffff;  /* Change text color on hover */
-  background-color: #000F91;  /* Add background color on hover */
-  padding: 5px 10px;  /* Slight padding change to show interaction */
+  color: white;  /* Change text color on hover */
+  background-color: #000F91;  /* Add background color */
+  padding: 8px 16px;  /* Slight padding adjustment */
 }
 
-/* Enroll Now Button */
+/* Update "Enroll Now" button */
 .btn-ghost {
   background-color: #000F91;
   color: white;
@@ -78,43 +80,12 @@ nav a:hover {
   font-weight: bold;
 }
 
-/* Enroll Now Button Hover Effect */
+/* Hover effect for Enroll Now button */
 .btn-ghost:hover {
   background-color: #000F91;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Shadow on hover for button */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);  /* Shadow effect */
 }
 
-    /* CHIPS (left) */
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      padding: .5rem 1rem;
-      border-radius: 9999px;
-      font-weight: 700;
-      background: var(--rose-100);
-      border: 1px solid var(--rose-200);
-      color: #2b2b2b;
-      transition: background .15s ease, transform .05s ease;
-    }
-    .chip:hover {
-      background: var(--rose-200);
-    }
-    .chip:active {
-      transform: translateY(1px);
-    }
-    .kicker {
-      letter-spacing: .14em;
-      color: #6b7280;
-    }
-    .headline {
-      font-weight: 900;
-      line-height: 1.1;
-    }
-    .headline em {
-      font-style: italic;
-      color: var(--rose-600);
-    }
     /* HERO should fit the first screen */
     .hero-fit {
       min-height: calc(100svh - var(--hero-offset));
@@ -122,54 +93,61 @@ nav a:hover {
       align-items: center;
     }
     /* TILE styles */
-    .tile {
-      background: var(--rose-100);
-      border: 1px solid var(--rose-200);
-      border-radius: 1.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-      overflow: hidden;
-    }
-    .tile-img {
-      width: 75%;
-      height: auto;
-      object-fit: contain;
-    }
-    .tile-symbol {
-      color: #9c3e57;
-      font-weight: 800;
-    }
-    /* MOSAIC — EXACT CANVA LAYOUT (4 cols x 4 rows) */
-/* Modify the section containing the grid layout for mosaic blocks */
+/* Adjust the icon and text styling inside each block */
+.tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;  /* Align text to center */
+}
 
-/* Mosaic Grid Layout — More dynamic grid with different item sizes */
+.tile-symbol {
+  font-size: 3rem;  /* Larger icon size */
+  margin-bottom: 8px;  /* Space between icon and text */
+}
+
+.tile span {
+  font-size: 1rem;  /* Adjust text size inside each tile */
+  font-weight: 500;  /* Make the text more readable */
+}
+    /* MOSAIC — EXACT CANVA LAYOUT (4 cols x 4 rows) */
+
 .mosaic-olympiad {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: auto;  /* Allow rows to adjust dynamically */
-  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);  /* Create 4 equal-width columns */
+  grid-template-rows: auto;  /* Automatically adjust rows */
+  gap: 24px;  /* Add spacing between tiles */
   grid-template-areas: 
     "globe pi pi emc"
     "chess pi pi emc"
     "chess money money laptop"
-    "chess laptop laptop laptop";
+    "chess laptop laptop laptop";  /* Adjusted grid layout */
 }
-
-/* Styling for each individual tile (grid item) */
+/* Center the content of each tile */
 .tile {
-  background: var(--rose-100);
-  border: 1px solid var(--rose-200);
-  border-radius: 1.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
-  overflow: hidden;
+  text-align: center;  /* Align text to center */
 }
 
-/* Adjust the size and position of individual grid items */
+.tile-symbol {
+  font-size: 3rem;  /* Icon size */
+  margin-bottom: 8px;  /* Space between icon and text */
+}
+
+.tile span {
+  font-size: 1rem;  /* Text size */
+  font-weight: 500;
+}
+
+/* Hover effect for tiles */
+.tile:hover {
+  background: var(--rose-200);  /* Change background on hover */
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);  /* Add shadow for depth */
+}
+
+/* Customize grid items' icons or content */
 .area-globe {
   grid-area: globe;
 }
@@ -189,16 +167,16 @@ nav a:hover {
   grid-area: laptop;
 }
 
-/* Responsive Design: Making sure it looks good on mobile */
+/* Responsive layout for mobile */
 @media (max-width: 768px) {
   .mosaic-olympiad {
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: 
+    grid-template-columns: 1fr 1fr;  /* 2 columns for smaller screens */
+    grid-template-areas:
       "pi pi"
       "globe emc"
       "chess chess"
       "money money"
-      "laptop laptop";
+      "laptop laptop";  /* Adjust layout for smaller devices */
   }
 }
 
