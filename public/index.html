@@ -22,96 +22,65 @@
     };
   </script>
 
-  <style>
-    :root{
-      /* palette from your Canva */
-      --cream:#FBF6F3;
-      --rose-50:#FCEBEC;
-      --rose-100:#F9DEE2;
-      --rose-200:#F6CDD6;
-      --rose-400:#EAA0B1;
-      --rose-600:#C86A82;
-      --ink:#111827;
-      --hero-offset: 140px; /* header + promo bar approx; tweak if needed */
-    }
-    body{ background:var(--cream); color:var(--ink) }
-    .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
-    .shadow-soft{ box-shadow:0 10px 30px rgba(17,24,39,.08) }
+<style>
+  /* Style for the mosaic grid */
+  .mosaic-olympiad {
+    --cell: clamp(90px, 20vw, 160px);   /* Responsive cell size */
+    display: grid;
+    grid-template-columns: repeat(3, var(--cell)); /* First row - 3 blocks */
+    grid-template-rows: repeat(2, var(--cell)); /* Second row - 2 blocks */
+    gap: 15px;  /* Equal space between blocks */
+    grid-template-areas:
+      "globe pi pi"      /* First row: 3 blocks */
+      "chess money laptop";  /* Second row: 3 blocks with the larger last block */
+  }
+  
+  /* Tiles */
+  .tile {
+    background: var(--rose-100); 
+    border: 1px solid var(--rose-200);
+    border-radius: 1.25rem; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    padding: 1rem; 
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(17, 24, 39, 0.08);  /* Soft shadow for aesthetic */
+  }
 
-    /* nav glass you still reference */
-    .glass{ background:rgba(255,255,255,.85); border:1px solid rgba(255,255,255,.5); backdrop-filter:blur(10px); }
+  .tile-img {
+    width: 85%;
+    height: auto;
+    object-fit: contain;
+  }
 
-    /* reused “card” and “dots” from your old sections */
-    .card{ background:#FFF7F6; border:1px solid var(--rose-100) }
-    .dots{ background-image: radial-gradient(var(--rose-200) 1px, transparent 1px); background-size:24px 24px; }
+  .tile-symbol {
+    color: #9C3E57;
+    font-weight: 800;
+  }
 
-    /* top promo bar */
-    .topbar{ background:#EFC3CB; color:#5a2e3b; font-weight:600 }
+  /* Mapping to specific grid layout areas */
+  .area-globe { grid-area: globe; }
+  .area-pi { grid-area: pi; }
+  .area-emc { grid-area: emc; }
+  .area-chess { grid-area: chess; }
+  .area-money { grid-area: money; }
+  .area-laptop { grid-area: laptop; }
 
-    /* chips */
-    .chip{
-      display:inline-flex;align-items:center;gap:.5rem;
-      padding:.5rem 1rem;border-radius:9999px;font-weight:700;
-      background:var(--rose-100); border:1px solid var(--rose-200); color:#2b2b2b;
-      transition:background .15s ease, transform .05s ease;
-    }
-    .chip:hover{ background:var(--rose-200) }
-    .chip:active{ transform:translateY(1px) }
-
-    .kicker{ letter-spacing:.14em; color:#6b7280 }
-    .headline{ font-weight:900; line-height:1.1 }
-    .headline em{ font-style:italic; color:var(--rose-600) }
-
-    /* HERO fit */
-    .hero-fit{
-      min-height: calc(100svh - var(--hero-offset));
-      display:flex; align-items:center;
-    }
-
-    /* tiles */
-    .tile{
-      background:var(--rose-100); border:1px solid var(--rose-200);
-      border-radius:1.25rem; display:flex; align-items:center; justify-content:center;
-      padding:1rem; overflow:hidden;
-    }
-    .tile-img{ width:75%; height:auto; object-fit:contain }
-    .tile-symbol{ color:#9c3e57; font-weight:800 }
-
-    /* mosaic layout */
-    .mosaic-olympiad{
-      --cell: clamp(76px, 9.5vw, 120px);
-      display:grid;
-      grid-template-columns: repeat(4, var(--cell));
-      grid-template-rows: repeat(4, var(--cell));
-      gap: 18px;
+  /* Mobile Layout - Neat stacking for smaller screens */
+  @media (max-width: 768px) {
+    .mosaic-olympiad {
+      --cell: clamp(100px, 30vw, 180px);
+      grid-template-columns: repeat(2, 1fr); /* 2 columns */
+      grid-template-rows: repeat(3, var(--cell)); /* 3 rows for 6 blocks */
       grid-template-areas:
-        "globe pi pi emc"
-        "chess pi pi emc"
-        "chess pi pi laptop"
-        "chess money money laptop";
+        "globe pi"
+        "chess pi"
+        "money laptop";
     }
-    .area-globe { grid-area: globe }
-    .area-pi    { grid-area: pi }
-    .area-emc   { grid-area: emc }
-    .area-chess { grid-area: chess }
-    .area-money { grid-area: money }
-    .area-laptop{ grid-area: laptop }
+  }
+</style>
 
-    @media (max-width: 768px){
-      .mosaic-olympiad{
-        --cell: clamp(92px, 26vw, 140px);
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(6, var(--cell));
-        grid-template-areas:
-          "pi pi"
-          "pi pi"
-          "globe emc"
-          "chess chess"
-          "money money"
-          "laptop laptop";
-      }
-    }
-  </style>
 </head>
 
 <body class="font-sans antialiased">
