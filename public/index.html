@@ -52,11 +52,38 @@
       box-shadow: 0 10px 30px rgba(17,24,39,.08);
     }
     /* top promo bar */
-    .topbar {
-      background: #EFC3CB;
-      color: #5a2e3b;
-      font-weight: 600;
-    }
+    /* Add this CSS to the section that contains the .topbar, nav a, and .btn-ghost */
+
+/* Enhanced Topbar (Navigation Bar) Styling */
+.topbar {
+  background: linear-gradient(to right, #FF7F7F, #FF4B4B);  /* Gradient background */
+  color: white;  /* White text color */
+  font-weight: 700;  /* Increased font weight */
+  padding: 12px 24px;  /* Padding around the top bar */
+}
+
+/* Navigation Links Hover Effect */
+nav a:hover {
+  color: #ffffff;  /* Change text color on hover */
+  background-color: #000F91;  /* Add background color on hover */
+  padding: 5px 10px;  /* Slight padding change to show interaction */
+}
+
+/* Enroll Now Button */
+.btn-ghost {
+  background-color: #000F91;
+  color: white;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+/* Enroll Now Button Hover Effect */
+.btn-ghost:hover {
+  background-color: #000F91;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Shadow on hover for button */
+}
+
     /* CHIPS (left) */
     .chip {
       display: inline-flex;
