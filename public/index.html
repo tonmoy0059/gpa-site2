@@ -115,6 +115,75 @@
           "laptop laptop";
       }
     }
+    /* ===== Journey Slider ===== */
+.journey-carousel{
+  position: relative;
+  overflow: hidden;
+  padding: 16px;
+}
+
+.journey-track{
+  display: flex;
+  transition: transform .6s ease;
+  will-change: transform;
+}
+
+.journey-slide{
+  flex: 0 0 100%;
+  min-height: clamp(220px, 36vw, 340px);
+  margin: 0 0; /* no side gap so 100% math is exact */
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: var(--accent-100);
+  border: 1px solid var(--accent-200);
+  box-shadow: 0 10px 30px rgba(17,24,39,.06) inset;
+  /* Placeholder look – remove when you add real content */
+  color: #6272FF;
+  font-weight: 800;
+  letter-spacing: .06em;
+}
+
+/* Navigation arrows */
+.journey-nav{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px; height: 40px;
+  border-radius: 9999px;
+  background: #fff;
+  border: 1px solid var(--accent-100);
+  box-shadow: 0 6px 16px rgba(0,0,0,.08);
+  display: grid; place-items: center;
+  font-size: 24px; line-height: 1;
+  color: var(--accent-600);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.journey-nav:hover{ transform: translateY(-50%) scale(1.04); box-shadow:0 10px 24px rgba(0,0,0,.1); }
+.journey-nav.prev{ left: 12px; }
+.journey-nav.next{ right: 12px; }
+
+/* Dots */
+.journey-dots{
+  display:flex; gap:8px; justify-content:center; align-items:center;
+  position:absolute; left:0; right:0; bottom:14px;
+}
+.journey-dots button{
+  width:8px; height:8px; border-radius:9999px;
+  background:#cfd6ff; border:none;
+  transition: transform .15s ease, background .15s ease;
+}
+.journey-dots button[aria-current="true"]{
+  background: var(--accent-600);
+  transform: scale(1.2);
+}
+
+/* Pause arrows on very small phones if desired
+@media (max-width:480px){
+  .journey-nav{ display:none; }
+}
+*/
+
   </style>
 </head>
 <body class="font-sans antialiased">
@@ -174,7 +243,26 @@
           </div>
         </div>
       </section>
+<!-- Journey Slider (place directly after the hero box) -->
+<section class="wrap mt-10">
+  <div class="journey-carousel rounded-3xl shadow-soft" style="background:var(--accent-50);border:1px solid var(--accent-100);">
+    <div id="journeyTrack" class="journey-track">
+      <div class="journey-slide"> <!-- Slide 1 placeholder --></div>
+      <div class="journey-slide"> <!-- Slide 2 placeholder --></div>
+      <div class="journey-slide"> <!-- Slide 3 placeholder --></div>
+      <div class="journey-slide"> <!-- Slide 4 placeholder --></div>
+      <div class="journey-slide"> <!-- Slide 5 placeholder --></div>
+      <div class="journey-slide"> <!-- Slide 6 placeholder --></div>
+    </div>
 
+    <!-- Controls (optional; you can remove if you want it purely auto) -->
+    <button class="journey-nav prev" aria-label="Previous slide">‹</button>
+    <button class="journey-nav next" aria-label="Next slide">›</button>
+
+    <div class="journey-dots" id="journeyDots" aria-label="Slide indicators"></div>
+  </div>
+</section>
+      
       <!-- Stats -->
       <section class="grid md:grid-cols-4 gap-6 mt-6">
         <div class="card rounded-2xl p-6"><div class="text-4xl font-extrabold text-gpa-deep">4.8</div><div class="text-sm text-gpa-deep/70">Rating</div></div>
@@ -234,5 +322,62 @@
       <div class="text-gpa-deep/70 text-sm">geniusprepacademy@gmail.com</div>
     </div>
   </footer>
+  <script>
+(function(){
+  const track = document.getElementById('journeyTrack');
+  if(!track) return;
+
+  const slides = Array.from(track.children);
+  const total = slides.length;
+  let index = 0;
+  let timer;
+
+  // Build dots
+  const dotsWrap = document.getElementById('journeyDots');
+  const dots = slides.map((_, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('aria-label', `Go to slide ${i+1}`);
+    b.addEventListener('click', () => goTo(i, true));
+    dotsWrap.appendChild(b);
+    return b;
+  });
+
+  function render(){
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((d,i)=> d.setAttribute('aria-current', i===index ? 'true' : 'false'));
+  }
+
+  function next(){ index = (index + 1) % total; render(); }
+  function prev(){ index = (index - 1 + total) % total; render(); }
+  function goTo(i, resetAuto=false){ index = i % total; render(); if(resetAuto){restart();} }
+
+  // Auto-play
+  function start(){ timer = setInterval(next, 3500); }  // 3.5 seconds
+  function stop(){ clearInterval(timer); }
+  function restart(){ stop(); start(); }
+
+  // Controls
+  const prevBtn = document.querySelector('.journey-nav.prev');
+  const nextBtn = document.querySelector('.journey-nav.next');
+  prevBtn?.addEventListener('click', () => { prev(); restart(); });
+  nextBtn?.addEventListener('click', () => { next(); restart(); });
+
+  // Pause on hover (desktop)
+  const carousel = prevBtn?.parentElement || track.parentElement;
+  carousel.addEventListener('mouseenter', stop);
+  carousel.addEventListener('mouseleave', start);
+
+  // Basic swipe support
+  let sx = 0, dx = 0;
+  carousel.addEventListener('touchstart', (e)=>{ sx = e.touches[0].clientX; dx = 0; stop(); }, {passive:true});
+  carousel.addEventListener('touchmove',  (e)=>{ dx = e.touches[0].clientX - sx; }, {passive:true});
+  carousel.addEventListener('touchend',   ()=>{ if(Math.abs(dx) > 40){ dx < 0 ? next() : prev(); } start(); });
+
+  // Init
+  render();
+  start();
+})();
+</script>
 </body>
 </html>
