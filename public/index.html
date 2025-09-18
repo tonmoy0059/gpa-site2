@@ -183,6 +183,99 @@
   .journey-nav{ display:none; }
 }
 */
+    /* ===== Polished Topbar + Sticky Glass Header ===== */
+
+/* Make header sticky, give breathing room above the hero */
+.site-header{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding: 18px 0 10px;            /* replaces previous pt-6 */
+  /* gentle fade so it doesn't feel like a block at the very top */
+  background: linear-gradient(to bottom, rgba(245,247,251,.92), rgba(245,247,251,0));
+  backdrop-filter: blur(2px);
+}
+
+/* When we scroll a bit, tighten and add a subtle drop shadow */
+.site-header.is-stuck{
+  background: rgba(245,247,251,.96); /* var(--cream) with alpha */
+  box-shadow: 0 10px 25px rgba(11,20,55,.06);
+  padding: 10px 0 8px;
+}
+
+/* Glass nav container */
+.glass-nav{
+  background: rgba(255,255,255,.55);
+  border: 1px solid var(--accent-100);
+  box-shadow: 0 8px 32px rgba(11,20,55,.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: box-shadow .2s ease, transform .2s ease, background .2s ease, border-color .2s ease;
+}
+
+/* Slightly stronger when header is stuck */
+.site-header.is-stuck .glass-nav{
+  background: rgba(255,255,255,.7);
+  border-color: var(--accent-200);
+  box-shadow: 0 10px 34px rgba(11,20,55,.1);
+}
+
+/* Logo text tint */
+.glass-nav .text-gpa-deep{ color:#0E1B6C; }
+
+/* Elegant nav links with animated underline */
+.nav-link{
+  position: relative;
+  display: inline-block;
+  padding: 6px 2px;
+  color:#22306E; /* readable blue */
+  font-weight: 600;
+  transition: color .15s ease, opacity .15s ease;
+}
+.nav-link::after{
+  content:"";
+  position:absolute; left:0; bottom:-4px;
+  width:0%; height:2px; border-radius:2px;
+  background: var(--accent-600);
+  transition: width .2s ease;
+  opacity:.8;
+}
+.nav-link:hover{ color:var(--accent-600); }
+.nav-link:hover::after{ width:100%; }
+
+/* “Enroll Now” button as primary CTA with soft glow */
+.btn-ghost{
+  background: var(--accent-600);
+  color:#fff;
+  border-radius: 12px;
+  padding: 10px 18px;
+  font-weight: 800;
+  letter-spacing:.02em;
+  box-shadow: 0 12px 28px rgba(64,84,255,.18);
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+}
+.btn-ghost:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 16px 34px rgba(64,84,255,.25);
+}
+.btn-ghost:focus-visible{
+  outline: 2px solid transparent;
+  box-shadow: 0 0 0 4px rgba(64,84,255,.25);
+}
+
+/* Top announcement bar in the blue family */
+.topbar{
+  background: linear-gradient(90deg, #C7D2FF, #E2E8FF);
+  color:#12206A;
+  font-weight:600;
+  padding: 8px 0;  /* a touch slimmer */
+}
+.topbar a{ color:#0E1B6C; }
+.topbar a:hover{ color:var(--accent-600); }
+
+/* Keep hero spaced nicely under the header */
+.hero-fit{ margin-top: 8px; }
+
 
   </style>
 </head>
@@ -193,9 +286,14 @@
     <a href="/courses.html#promo" class="underline font-extrabold" style="color:#7a3045">Register now</a>
   </div>
 
-  <header class="pt-6">
+<header class="site-header">
     <div class="wrap">
-      <nav class="flex items-center justify-between glass px-4 py-3 rounded-2xl">
+<nav class="glass-nav flex items-center justify-between px-5 py-4 rounded-2xl">
+  <ul class="hidden md:flex items-center gap-8 text-sm text-gpa-deep/80">
+  <li><a href="/courses.html" class="nav-link">Courses</a></li>
+  <li><a href="/blog.html" class="nav-link">Blog</a></li>
+  <li><a href="/contact.html" class="nav-link">Contact Us</a></li>
+</ul>
         <a href="/index.html" class="flex items-center gap-3">
           <img src="/uploads/gpa-logo.svg" alt="Genius Prep Academy" class="h-8 w-8 object-contain rounded-md" />
           <span class="font-semibold text-gpa-deep">Genius Prep Academy</span>
@@ -378,6 +476,19 @@
   render();
   start();
 })();
+</script>
+  <script>
+  // Toggle a subtle "stuck" style when you scroll a bit
+  (function(){
+    const header = document.querySelector('.site-header');
+    if(!header) return;
+    const onScroll = () => {
+      if (window.scrollY > 10) header.classList.add('is-stuck');
+      else header.classList.remove('is-stuck');
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, {passive:true});
+  })();
 </script>
 </body>
 </html>
