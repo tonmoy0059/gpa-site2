@@ -81,38 +81,114 @@
 }
 .tile-symbol{ color:#3B4ACB; font-weight:800; }
 
-    /* MOSAIC */
-    .mosaic-olympiad{
-      --cell: clamp(76px, 9.5vw, 120px);
-      display:grid;
-      grid-template-columns: repeat(4, var(--cell));
-      grid-template-rows: repeat(4, var(--cell));
-      gap: 18px;
-      grid-template-areas:
-        "globe pi pi emc"
-        "chess pi pi emc"
-        "chess pi pi laptop"
-        "chess money money laptop";
+    /* Modern Mosaic Layout */
+    .mosaic-olympiad {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: repeat(8, minmax(60px, auto));
+      gap: 20px;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 20px;
     }
-    .area-globe { grid-area: globe; }
-    .area-pi { grid-area: pi; }
-    .area-emc { grid-area: emc; }
-    .area-chess { grid-area: chess; }
-    .area-money { grid-area: money; }
-    .area-laptop{ grid-area: laptop; }
 
-    @media (max-width: 768px){
-      .mosaic-olympiad{
-        --cell: clamp(92px, 26vw, 140px);
+    .mosaic-block {
+      background: var(--accent-50);
+      border: 1px solid var(--accent-200);
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mosaic-block:hover {
+      background: var(--accent-100);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(11,20,55,.12);
+    }
+
+    .mosaic-symbol {
+      color: var(--accent-600);
+      font-weight: 700;
+      transition: transform 0.2s ease;
+    }
+
+    /* Block Placements */
+    .block-maths {
+      grid-column: 1 / 8;
+      grid-row: 1 / 5;
+    }
+    .block-maths .mosaic-symbol {
+      font-size: clamp(80px, 10vw, 120px);
+    }
+
+    .block-economics {
+      grid-column: 8 / 13;
+      grid-row: 1 / 3;
+    }
+    .block-economics .mosaic-symbol {
+      font-size: clamp(32px, 4vw, 48px);
+    }
+
+    .block-earth {
+      grid-column: 8 / 13;
+      grid-row: 3 / 5;
+    }
+    .block-earth .mosaic-symbol {
+      font-size: clamp(32px, 4vw, 48px);
+    }
+
+    .block-physics {
+      grid-column: 1 / 5;
+      grid-row: 5 / 9;
+    }
+    .block-physics .mosaic-symbol {
+      font-size: clamp(24px, 3vw, 32px);
+    }
+
+    .block-chess {
+      grid-column: 5 / 13;
+      grid-row: 5 / 7;
+    }
+    .block-chess .mosaic-symbol {
+      font-size: clamp(32px, 4vw, 48px);
+    }
+
+    .block-informatics {
+      grid-column: 5 / 13;
+      grid-row: 7 / 9;
+    }
+    .block-informatics .mosaic-symbol {
+      font-size: clamp(32px, 4vw, 48px);
+    }
+
+    /* Mobile Layout */
+    @media (max-width: 768px) {
+      .mosaic-olympiad {
         grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(6, var(--cell));
-        grid-template-areas:
-          "pi pi"
-          "pi pi"
-          "globe emc"
-          "chess chess"
-          "money money"
-          "laptop laptop";
+        grid-template-rows: auto;
+        gap: 16px;
+        padding: 16px;
+      }
+
+      .mosaic-block {
+        grid-column: auto !important;
+        grid-row: auto !important;
+        min-height: 120px;
+      }
+
+      .block-maths {
+        grid-column: 1 / -1 !important;
+        min-height: 200px;
+      }
+
+      .block-economics,
+      .block-informatics {
+        grid-column: 1 / -1 !important;
       }
     }
     /* ===== Journey Slider ===== */
@@ -330,14 +406,26 @@
             </div>
           </div>
 
-          <!-- RIGHT MOSAIC -->
+          <!-- Modern Mosaic Layout -->
           <div class="mosaic-olympiad mx-auto">
-            <div class="tile area-globe"><span class="tile-symbol text-3xl">🌍</span></div>
-            <div class="tile area-pi"><span class="tile-symbol" style="font-size:96px; line-height:0.9;">π</span></div>
-            <div class="tile area-emc"><span class="tile-symbol text-2xl">E=mc²</span></div>
-            <div class="tile area-chess"><span class="tile-symbol text-5xl">♖</span></div>
-            <div class="tile area-money"><span class="tile-symbol text-3xl">₮</span></div>
-            <div class="tile area-laptop"><span class="tile-symbol text-3xl">💻</span></div>
+            <a href="/courses.html#maths" class="mosaic-block block-maths" aria-label="Mathematics Olympiad">
+              <span class="mosaic-symbol">π</span>
+            </a>
+            <a href="/courses.html#economics" class="mosaic-block block-economics" aria-label="Economics Olympiad">
+              <span class="mosaic-symbol">₮</span>
+            </a>
+            <a href="/courses.html#earth" class="mosaic-block block-earth" aria-label="Earth Science Olympiad">
+              <span class="mosaic-symbol">🌍</span>
+            </a>
+            <a href="/courses.html#physics" class="mosaic-block block-physics" aria-label="Physics Olympiad">
+              <span class="mosaic-symbol">E=mc²</span>
+            </a>
+            <a href="/courses.html#chess" class="mosaic-block block-chess" aria-label="Chess Olympiad">
+              <span class="mosaic-symbol">♖</span>
+            </a>
+            <a href="/courses.html#informatics" class="mosaic-block block-informatics" aria-label="Informatics Olympiad">
+              <span class="mosaic-symbol">💻</span>
+            </a>
           </div>
         </div>
       </section>
@@ -488,6 +576,39 @@
     };
     onScroll();
     window.addEventListener('scroll', onScroll, {passive:true});
+  })();
+</script>
+<script>
+  // Mosaic Interactions
+  (function() {
+    const blocks = document.querySelectorAll('.mosaic-block');
+    
+    blocks.forEach(block => {
+      block.addEventListener('mouseenter', () => {
+        const symbol = block.querySelector('.mosaic-symbol');
+        if (symbol) {
+          symbol.style.transform = 'scale(1.1)';
+        }
+      });
+      
+      block.addEventListener('mouseleave', () => {
+        const symbol = block.querySelector('.mosaic-symbol');
+        if (symbol) {
+          symbol.style.transform = 'scale(1)';
+        }
+      });
+
+      // Add focus styles for accessibility
+      block.addEventListener('focus', () => {
+        block.style.outline = '2px solid var(--accent-600)';
+        block.style.outlineOffset = '2px';
+      });
+
+      block.addEventListener('blur', () => {
+        block.style.outline = '';
+        block.style.outlineOffset = '';
+      });
+    });
   })();
 </script>
 </body>
