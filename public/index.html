@@ -352,6 +352,75 @@
 /* Keep hero spaced nicely under the header */
 .hero-fit{ margin-top: 8px; }
 
+/* Mentor Carousel */
+.mentor-carousel {
+  position: relative;
+  overflow: hidden;
+  padding: 20px 0;
+}
+
+.mentor-track {
+  display: flex;
+  gap: 24px;
+  transition: transform 0.5s ease-out;
+}
+
+.mentor-card {
+  flex: 0 0 calc(33.333% - 16px);
+  background: var(--accent-50);
+  border: 1px solid var(--accent-100);
+  border-radius: 24px;
+  overflow: hidden;
+  padding: 24px;
+}
+
+.mentor-image-wrap {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 20px;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(45deg, var(--accent-100), var(--accent-200));
+  padding: 3px;
+}
+
+.mentor-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.mentor-name {
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--ink);
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.mentor-subject {
+  color: var(--accent-600);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.mentor-credentials {
+  color: var(--ink);
+  opacity: 0.7;
+  font-size: 0.875rem;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* Auto-scroll animation */
+@keyframes scrollMentors {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-33.333% - 24px)); }
+}
 
   </style>
 </head>
@@ -457,14 +526,124 @@
         <div class="card rounded-2xl p-6 grid place-items-center"><a href="/courses.html#enroll" class="cta px-8 py-3 rounded-xl font-semibold">Enroll</a></div>
       </section>
 
-      <!-- Featured Courses -->
+      <!-- Meet Our Mentors -->
       <section class="mt-16">
-        <h2 class="text-3xl md:text-4xl font-extrabold headline">Featured <span class="headline-accent">Courses</span></h2>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
-          <a href="/courses.html" class="card rounded-2xl p-6 hover:shadow-soft transition"><div class="font-semibold text-gpa-deep text-xl">Informatics</div><img src="/uploads/courses/informatics.svg" class="mt-4 h-28 w-full object-contain" alt="informatics"></a>
-          <a href="/courses.html" class="card rounded-2xl p-6 hover:shadow-soft transition"><div class="font-semibold text-gpa-deep text-xl">Maths</div><img src="/uploads/courses/maths.svg" class="mt-4 h-28 w-full object-contain" alt="maths"></a>
-          <a href="/courses.html" class="card rounded-2xl p-6 hover:shadow-soft transition"><div class="font-semibold text-gpa-deep text-xl">Physics</div><img src="/uploads/courses/physics.svg" class="mt-4 h-28 w-full object-contain" alt="physics"></a>
-          <a href="/courses.html" class="card rounded-2xl p-6 hover:shadow-soft transition"><div class="font-semibold text-gpa-deep text-xl">Economics</div><img src="/uploads/courses/economics.svg" class="mt-4 h-28 w-full object-contain" alt="economics"></a>
+        <h2 class="text-3xl md:text-4xl font-extrabold headline">Meet Our <span class="headline-accent">Mentors</span></h2>
+        <div class="section-desc text-gpa-deep/70 mt-2 mb-8">Learn from accomplished experts who have excelled in national and international competitions</div>
+        
+        <div class="mentor-carousel">
+          <div class="mentor-track" style="animation: scrollMentors 30s linear infinite;">
+            <!-- First Set -->
+            <div class="mentor-card">
+              <div class="mentor-image-wrap">
+                <img src="uploads/haadi.jpg" alt="Haadi" class="mentor-image">
+              </div>
+              <h3 class="mentor-name">Haadi</h3>
+              <div class="mentor-subject">Physics</div>
+              <div class="mentor-credentials">
+                Bronze Medalist - Physics Olympiad<br>
+                National Top 10
+              </div>
+            </div>
+
+            <div class="mentor-card">
+              <div class="mentor-image-wrap">
+                <img src="uploads/thamid.jpg" alt="Thamid" class="mentor-image">
+              </div>
+              <h3 class="mentor-name">Thamid</h3>
+              <div class="mentor-subject">Mathematics</div>
+              <div class="mentor-credentials">
+                Gold Medalist - Mathematics Olympiad<br>
+                International Qualifier
+              </div>
+            </div>
+
+            <div class="mentor-card">
+              <div class="mentor-image-wrap">
+                <img src="uploads/labeeb.jpg" alt="Labeeb" class="mentor-image">
+              </div>
+              <h3 class="mentor-name">Labeeb</h3>
+              <div class="mentor-subject">Economics</div>
+              <div class="mentor-credentials">
+                Silver Medalist - Economics Olympiad<br>
+                Regional Champion
+              </div>
+            </div>
+
+            <!-- Second Set -->
+            <div class="mentor-card">
+              <div class="mentor-image-wrap">
+                <img src="uploads/haadi1.jpg" alt="Sarah" class="mentor-image">
+              </div>
+              <h3 class="mentor-name">Sarah</h3>
+              <div class="mentor-subject">Informatics</div>
+              <div class="mentor-credentials">
+                Gold Medalist - Informatics Olympiad<br>
+                International Team Member
+              </div>
+            </div>
+
+            <div class="mentor-card">
+              <div class="mentor-image-wrap">
+                <img src="uploads/thamid1.jpg" alt="Karim" class="mentor-image">
+              </div>
+              <h3 class="mentor-name">Karim</h3>
+              <div class="mentor-subject">Earth Science</div>
+              <div class="mentor-credentials">
+                Silver Medalist - NEO<br>
+                National Champion
+              </div>
+            </div>
+
+            <div class="mentor-card">
+              <div class="mentor-image-wrap">
+                <img src="uploads/labeeb1.jpg" alt="Riya" class="mentor-image">
+              </div>
+              <h3 class="mentor-name">Riya</h3>
+              <div class="mentor-subject">Chess</div>
+              <div class="mentor-credentials">
+                FIDE Master<br>
+                National Champion
+              </div>
+            </div>
+
+            <!-- Duplicated First Set for Seamless Loop -->
+            <div class="mentor-card">
+              <div class="mentor-image-wrap">
+                <img src="uploads/haadi.jpg" alt="Haadi" class="mentor-image">
+              </div>
+              <h3 class="mentor-name">Haadi</h3>
+              <div class="mentor-subject">Physics</div>
+              <div class="mentor-credentials">
+                Bronze Medalist - Physics Olympiad<br>
+                National Top 10
+              </div>
+            </div>
+
+            <div class="mentor-card">
+              <div class="mentor-image-wrap">
+                <img src="uploads/thamid.jpg" alt="Thamid" class="mentor-image">
+              </div>
+              <h3 class="mentor-name">Thamid</h3>
+              <div class="mentor-subject">Mathematics</div>
+              <div class="mentor-credentials">
+                Gold Medalist - Mathematics Olympiad<br>
+                International Qualifier
+              </div>
+            </div>
+
+            <div class="mentor-card">
+              <div class="mentor-image-wrap">
+                <img src="uploads/labeeb.jpg" alt="Labeeb" class="mentor-image">
+              </div>
+              <h3 class="mentor-name">Labeeb</h3>
+              <div class="mentor-subject">Economics</div>
+              <div class="mentor-credentials">
+                Silver Medalist - Economics Olympiad<br>
+                Regional Champion
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
