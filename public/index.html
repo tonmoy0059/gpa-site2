@@ -112,9 +112,12 @@
     }
 
     .mosaic-symbol {
-      color: var(--accent-600);
-      font-weight: 700;
       transition: transform 0.2s ease;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      margin: auto;
     }
 
     /* Block Placements */
@@ -478,22 +481,22 @@
           <!-- Modern Mosaic Layout -->
           <div class="mosaic-olympiad mx-auto">
             <a href="/courses.html#maths" class="mosaic-block block-maths" aria-label="Mathematics Olympiad">
-              <span class="mosaic-symbol">π</span>
-            </a>
-            <a href="/courses.html#economics" class="mosaic-block block-economics" aria-label="Economics Olympiad">
-              <span class="mosaic-symbol">₮</span>
-            </a>
-            <a href="/courses.html#earth" class="mosaic-block block-earth" aria-label="Earth Science Olympiad">
-              <span class="mosaic-symbol">🌍</span>
-            </a>
-            <a href="/courses.html#physics" class="mosaic-block block-physics" aria-label="Physics Olympiad">
-              <span class="mosaic-symbol">E=mc²</span>
-            </a>
-            <a href="/courses.html#chess" class="mosaic-block block-chess" aria-label="Chess Olympiad">
-              <span class="mosaic-symbol">♖</span>
+              <img src="/uploads/icons/pie.png" alt="Mathematics" class="mosaic-symbol" style="width: auto; height: 65%; object-fit: contain;">
             </a>
             <a href="/courses.html#informatics" class="mosaic-block block-informatics" aria-label="Informatics Olympiad">
-              <span class="mosaic-symbol">💻</span>
+              <img src="/uploads/icons/info.png" alt="Informatics" class="mosaic-symbol" style="width: auto; height: 60%; object-fit: contain;">
+            </a>
+            <a href="/courses.html#economics" class="mosaic-block block-economics" aria-label="Economics Olympiad">
+              <img src="/uploads/icons/econ.png" alt="Economics" class="mosaic-symbol" style="width: auto; height: 60%; object-fit: contain;">
+            </a>
+            <a href="/courses.html#earth" class="mosaic-block block-earth" aria-label="Earth Science Olympiad">
+              <img src="/uploads/icons/earth.png" alt="Earth Science" class="mosaic-symbol" style="width: auto; height: 60%; object-fit: contain;">
+            </a>
+            <a href="/courses.html#physics" class="mosaic-block block-physics" aria-label="Physics Olympiad">
+              <img src="/uploads/icons/physics.png" alt="Physics" class="mosaic-symbol" style="width: auto; height: 60%; object-fit: contain;">
+            </a>
+            <a href="/courses.html#chess" class="mosaic-block block-chess" aria-label="Chess Olympiad">
+              <img src="/uploads/icons/chess.png" alt="Chess" class="mosaic-symbol" style="width: auto; height: 55%; object-fit: contain;">
             </a>
           </div>
         </div>
