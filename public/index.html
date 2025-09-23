@@ -85,7 +85,8 @@
     .mosaic-olympiad {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
-      grid-template-rows: repeat(4, minmax(64px, auto));  /* Reduced from 80px to 64px (20% reduction) */
+      /* First two rows remain at 64px, last two rows reduced by additional 20% to ~51px */
+      grid-template-rows: minmax(64px, auto) minmax(64px, auto) minmax(51px, auto) minmax(51px, auto);
       gap: 16px;
       max-width: 760px;
       margin: 0 auto;
