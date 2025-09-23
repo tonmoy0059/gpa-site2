@@ -85,7 +85,7 @@
     .mosaic-olympiad {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
-      grid-template-rows: repeat(4, minmax(80px, auto));
+      grid-template-rows: repeat(4, minmax(64px, auto));  /* Reduced from 80px to 64px (20% reduction) */
       gap: 16px;
       max-width: 760px;
       margin: 0 auto;
@@ -181,12 +181,12 @@
       .mosaic-block {
         grid-column: auto !important;
         grid-row: auto !important;
-        min-height: 120px;
+        min-height: 96px;  /* Reduced from 120px to 96px (20% reduction) */
       }
 
       .block-maths {
         grid-column: 1 / -1 !important;
-        min-height: 200px;
+        min-height: 160px;  /* Reduced from 200px to 160px (20% reduction) */
       }
 
       .block-economics,
