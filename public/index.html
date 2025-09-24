@@ -218,10 +218,14 @@
   background: var(--accent-100);
   border: 1px solid var(--accent-200);
   box-shadow: 0 10px 30px rgba(17,24,39,.06) inset;
-  /* Placeholder look – remove when you add real content */
-  color: #6272FF;
-  font-weight: 800;
-  letter-spacing: .06em;
+  overflow: hidden; /* Ensure images don't overflow */
+}
+
+.journey-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Make image cover the entire container */
+  display: block;
 }
 
 /* Navigation arrows */
