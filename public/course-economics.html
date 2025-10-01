@@ -35,16 +35,33 @@
   <div class="wrap">
     <nav class="flex items-center justify-between glass px-4 py-3 rounded-2xl">
       <a href="/index.html" class="flex items-center gap-3">
-        <span class="inline-flex h-8 w-8 items-center justify-center rounded-full ring-2 ring-[color:var(--blob)]"><span class="block h-3 w-3 rounded-sm bg-[color:var(--blob)]"></span></span>
+        <img src="/uploads/courses/GPA logos/GPApurplelogo.jpg" alt="Genius Prep Academy" class="h-8 w-8 object-contain rounded-md" />
         <span class="font-semibold text-gpa-deep">Genius Prep Academy</span>
       </a>
+      
       <ul class="hidden md:flex items-center gap-8 text-sm text-gpa-deep/80">
-        <li><a href="/courses.html" class="hover:text-gpa-deep">Courses</a></li>
-        <li><a href="/blog.html" class="hover:text-gpa-deep">Blog</a></li>
-        <li><a href="/contact.html" class="hover:text-gpa-deep">Contact Us</a></li>
+        <li><a href="/courses.html" class="hover:text-gpa-deep transition-colors">Courses</a></li>
+        <li><a href="/blog.html" class="hover:text-gpa-deep transition-colors">Blog</a></li>
+        <li><a href="/contact.html" class="hover:text-gpa-deep transition-colors">Contact Us</a></li>
       </ul>
-      <a href="/contact.html#enroll" class="rounded-full cta px-5 py-2 font-semibold shadow-soft">Enroll</a>
+      
+      <button id="mobile-menu-btn" class="md:hidden p-2 text-gpa-deep hover:bg-white/50 rounded-lg transition-colors" aria-label="Toggle mobile menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+      
+      <a href="/contact.html#enroll" class="hidden md:inline-block rounded-full cta px-5 py-2 font-semibold shadow-soft transition-all hover:transform hover:scale-105">Enroll</a>
     </nav>
+    
+    <div id="mobile-menu" class="hidden md:hidden mt-4 glass rounded-2xl p-4">
+      <ul class="space-y-4 text-center">
+        <li><a href="/courses.html" class="block py-3 text-gpa-deep hover:bg-white/30 rounded-lg transition-colors font-medium">Courses</a></li>
+        <li><a href="/blog.html" class="block py-3 text-gpa-deep hover:bg-white/30 rounded-lg transition-colors font-medium">Blog</a></li>
+        <li><a href="/contact.html" class="block py-3 text-gpa-deep hover:bg-white/30 rounded-lg transition-colors font-medium">Contact Us</a></li>
+        <li><a href="/contact.html#enroll" class="block w-full rounded-full cta px-5 py-3 font-semibold shadow-soft transition-all hover:transform hover:scale-105 mt-4">Enroll Now</a></li>
+      </ul>
+    </div>
   </div>
 </header>
 
@@ -138,5 +155,33 @@ Click to Enroll
     <div class="text-gpa-deep/70 text-sm">hello@gprepacademy.com</div>
   </div>
 </footer>
+<script>
+// Mobile menu toggle functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', function() {
+      mobileMenu.classList.toggle('hidden');
+      
+      const svg = mobileMenuBtn.querySelector('svg path');
+      if (mobileMenu.classList.contains('hidden')) {
+        svg.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+      } else {
+        svg.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+      }
+    });
+    
+    document.addEventListener('click', function(event) {
+      if (!mobileMenuBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
+        mobileMenu.classList.add('hidden');
+        const svg = mobileMenuBtn.querySelector('svg path');
+        svg.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+      }
+    });
+  }
+});
+</script>
 </body>
 </html>
