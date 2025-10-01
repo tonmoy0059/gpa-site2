@@ -406,10 +406,38 @@
   line-height: 1.4;
 }
 
-/* Auto-scroll animation */
-@keyframes scrollMentors {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(calc(-33.333% - 24px)); }
+/* Mentor navigation styles */
+.mentor-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.9);
+  border: 1px solid var(--accent-200);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--ink);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 20;
+  transition: all 0.2s ease;
+}
+
+.mentor-nav-btn:hover {
+  background: rgba(255,255,255,1);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.mentor-prev {
+  left: 20px;
+}
+
+.mentor-next {
+  right: 20px;
 }
 
 /* Mobile Navigation */
@@ -524,55 +552,26 @@
   .mentor-carousel {
     overflow: hidden;
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
-    padding: 0 60px; /* Space for navigation buttons */
+    padding: 0 70px; /* Space for navigation buttons */
   }
   
   .mentor-track {
-    animation: none !important;
-    transition: transform 0.3s ease;
-    align-items: center;
-    width: 100%;
-    justify-content: center;
+    display: flex;
+    transition: transform 0.4s ease;
+    gap: 0;
   }
   
   .mentor-card {
-    flex: 0 0 calc(100% - 120px); /* Account for button padding */
-    max-width: 300px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex: 0 0 100%;
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
   }
   
   .mentor-nav-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255,255,255,0.9);
-    border: 1px solid var(--accent-200);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 14px;
-    color: var(--ink);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    z-index: 10;
-  }
-  
-  .mentor-prev {
-    left: 16px;
-  }
-  
-  .mentor-next {
-    right: 16px;
+    display: flex !important;
   }
   
   .mentor-indicators {
@@ -596,11 +595,17 @@
   }
 }
 
-/* Desktop styles - hide mobile elements */
+/* Desktop styles - show mentor navigation, hide mobile menu */
 @media (min-width: 769px) {
   .mobile-menu-btn,
-  .mobile-nav,
-  .mentor-nav-btn,
+  .mobile-nav {
+    display: none !important;
+  }
+  
+  .mentor-nav-btn {
+    display: flex !important;
+  }
+  
   .mentor-indicators {
     display: none !important;
   }
@@ -829,7 +834,7 @@
           <div class="section-desc text-gpa-deep/70 mt-2 mb-8">Learn from accomplished experts who have excelled in national and international competitions</div>
         
         <div class="mentor-carousel">
-          <div class="mentor-track" style="animation: scrollMentors 30s linear infinite;">
+          <div class="mentor-track">
             <!-- First Set -->
             <div class="mentor-card">
               <div class="mentor-image-wrap">
@@ -1107,7 +1112,7 @@
     });
   })();
   
-  // Mobile Mentor Carousel
+  // Mentor Carousel (Desktop & Mobile)
   (function(){
     const isMobile = () => window.innerWidth <= 768;
     const track = document.querySelector('.mentor-track');
@@ -1121,7 +1126,7 @@
     const mentorCards = Array.from(track.children).slice(0, 6); // First 6 unique mentors
     let indicators = [];
     
-    // Create indicators
+    // Create indicators for mobile
     function createIndicators() {
       if(!isMobile()) return;
       indicatorsContainer.innerHTML = '';
@@ -1145,40 +1150,47 @@
     }
     
     function goToSlide(index) {
-      if(!isMobile()) return;
       currentIndex = index;
-      track.style.transform = `translateX(-${currentIndex * 100}%)`;
-      updateIndicators();
+      if(isMobile()) {
+        // Mobile: show one card at a time
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        updateIndicators();
+      } else {
+        // Desktop: show 3 cards, scroll by one card
+        const cardWidth = 33.333; // Each card is 1/3 of container
+        const maxIndex = Math.max(0, mentorCards.length - 3);
+        currentIndex = Math.min(currentIndex, maxIndex);
+        track.style.transform = `translateX(-${currentIndex * cardWidth}%)`;
+      }
     }
     
     function nextSlide() {
-      if(!isMobile()) return;
-      currentIndex = (currentIndex + 1) % mentorCards.length;
+      if(isMobile()) {
+        currentIndex = (currentIndex + 1) % mentorCards.length;
+      } else {
+        const maxIndex = Math.max(0, mentorCards.length - 3);
+        currentIndex = Math.min(currentIndex + 1, maxIndex);
+      }
       goToSlide(currentIndex);
     }
     
     function prevSlide() {
-      if(!isMobile()) return;
-      currentIndex = (currentIndex - 1 + mentorCards.length) % mentorCards.length;
+      if(isMobile()) {
+        currentIndex = (currentIndex - 1 + mentorCards.length) % mentorCards.length;
+      } else {
+        currentIndex = Math.max(currentIndex - 1, 0);
+      }
       goToSlide(currentIndex);
     }
     
     function handleResize() {
+      currentIndex = 0;
+      goToSlide(0);
+      
       if(isMobile()) {
-        track.style.animation = 'none';
-        track.style.justifyContent = 'flex-start';
-        currentIndex = 0;
-        goToSlide(0);
         createIndicators();
-        prevBtn.style.display = 'flex';
-        nextBtn.style.display = 'flex';
         indicatorsContainer.style.display = 'flex';
       } else {
-        track.style.animation = 'scrollMentors 30s linear infinite';
-        track.style.transform = 'translateX(0)';
-        track.style.justifyContent = '';
-        prevBtn.style.display = 'none';
-        nextBtn.style.display = 'none';
         indicatorsContainer.style.display = 'none';
       }
     }
