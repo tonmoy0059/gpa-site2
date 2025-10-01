@@ -412,6 +412,165 @@
   100% { transform: translateX(calc(-33.333% - 24px)); }
 }
 
+/* Mobile Navigation */
+.mobile-menu-btn {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+.mobile-menu-btn span {
+  width: 100%;
+  height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-btn.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-menu-btn.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-btn.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+.mobile-nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(255,255,255,.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--accent-100);
+  border-radius: 16px;
+  margin-top: 8px;
+  padding: 16px;
+  box-shadow: 0 12px 32px rgba(11,20,55,.15);
+}
+
+.mobile-nav.active {
+  display: block;
+}
+
+.mobile-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mobile-nav li {
+  margin: 0;
+}
+
+.mobile-nav .nav-link {
+  display: block;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--accent-100);
+  font-size: 16px;
+}
+
+.mobile-nav li:last-child .nav-link {
+  border-bottom: none;
+}
+
+.mobile-nav .btn-ghost {
+  display: block;
+  text-align: center;
+  margin-top: 16px;
+  width: 100%;
+}
+
+/* Responsive mentor carousel for mobile */
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: flex;
+  }
+  
+  .glass-nav ul,
+  .glass-nav .btn-ghost {
+    display: none;
+  }
+  
+  .glass-nav {
+    position: relative;
+  }
+  
+  .mentor-carousel {
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .mentor-track {
+    animation: none !important;
+    transition: transform 0.3s ease;
+  }
+  
+  .mentor-card {
+    flex: 0 0 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  
+  .mentor-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.9);
+    border: 1px solid var(--accent-200);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--ink);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 10;
+  }
+  
+  .mentor-prev {
+    left: 16px;
+  }
+  
+  .mentor-next {
+    right: 16px;
+  }
+  
+  .mentor-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  
+  .mentor-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-200);
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .mentor-dot.active {
+    background: var(--accent-600);
+  }
+}
+
   </style>
 </head>
 <body class="font-sans antialiased">
@@ -439,6 +598,23 @@
         
         <!-- CTA (Right) -->
         <a href="/courses.html" class="btn-ghost shadow-soft">Enroll Now</a>
+        
+        <!-- Mobile Menu Button -->
+        <button class="mobile-menu-btn" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        
+        <!-- Mobile Navigation -->
+        <div class="mobile-nav">
+          <ul>
+            <li><a href="/courses.html" class="nav-link">Courses</a></li>
+            <li><a href="/blog.html" class="nav-link">Blog</a></li>
+            <li><a href="/contact.html" class="nav-link">Contact Us</a></li>
+          </ul>
+          <a href="/courses.html" class="btn-ghost shadow-soft">Enroll Now</a>
+        </div>
       </nav>
     </div>
   </header>
@@ -730,6 +906,13 @@
               </div>
             </div>
           </div>
+          
+          <!-- Mobile Navigation Controls -->
+          <button class="mentor-nav-btn mentor-prev" aria-label="Previous mentor">‹</button>
+          <button class="mentor-nav-btn mentor-next" aria-label="Next mentor">›</button>
+          
+          <!-- Mobile Indicators -->
+          <div class="mentor-indicators"></div>
         </div>
         </div>
       </section>
@@ -851,6 +1034,136 @@
     };
     onScroll();
     window.addEventListener('scroll', onScroll, {passive:true});
+  })();
+  
+  // Mobile Navigation
+  (function(){
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const mobileNav = document.querySelector('.mobile-nav');
+    
+    if(!menuBtn || !mobileNav) return;
+    
+    menuBtn.addEventListener('click', () => {
+      menuBtn.classList.toggle('active');
+      mobileNav.classList.toggle('active');
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!menuBtn.contains(e.target) && !mobileNav.contains(e.target)) {
+        menuBtn.classList.remove('active');
+        mobileNav.classList.remove('active');
+      }
+    });
+  })();
+  
+  // Mobile Mentor Carousel
+  (function(){
+    const isMobile = () => window.innerWidth <= 768;
+    const track = document.querySelector('.mentor-track');
+    const prevBtn = document.querySelector('.mentor-prev');
+    const nextBtn = document.querySelector('.mentor-next');
+    const indicatorsContainer = document.querySelector('.mentor-indicators');
+    
+    if(!track || !prevBtn || !nextBtn) return;
+    
+    let currentIndex = 0;
+    const mentorCards = Array.from(track.children).slice(0, 6); // First 6 unique mentors
+    let indicators = [];
+    
+    // Create indicators
+    function createIndicators() {
+      if(!isMobile()) return;
+      indicatorsContainer.innerHTML = '';
+      indicators = [];
+      
+      mentorCards.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.className = 'mentor-dot';
+        if(index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(index));
+        indicators.push(dot);
+        indicatorsContainer.appendChild(dot);
+      });
+    }
+    
+    function updateIndicators() {
+      if(!isMobile()) return;
+      indicators.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+      });
+    }
+    
+    function goToSlide(index) {
+      if(!isMobile()) return;
+      currentIndex = index;
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      updateIndicators();
+    }
+    
+    function nextSlide() {
+      if(!isMobile()) return;
+      currentIndex = (currentIndex + 1) % mentorCards.length;
+      goToSlide(currentIndex);
+    }
+    
+    function prevSlide() {
+      if(!isMobile()) return;
+      currentIndex = (currentIndex - 1 + mentorCards.length) % mentorCards.length;
+      goToSlide(currentIndex);
+    }
+    
+    function handleResize() {
+      if(isMobile()) {
+        track.style.animation = 'none';
+        currentIndex = 0;
+        goToSlide(0);
+        createIndicators();
+        prevBtn.style.display = 'flex';
+        nextBtn.style.display = 'flex';
+        indicatorsContainer.style.display = 'flex';
+      } else {
+        track.style.animation = 'scrollMentors 30s linear infinite';
+        track.style.transform = 'translateX(0)';
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+        indicatorsContainer.style.display = 'none';
+      }
+    }
+    
+    // Event listeners
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+    window.addEventListener('resize', handleResize);
+    
+    // Touch support for mobile
+    let startX = 0;
+    let deltaX = 0;
+    
+    track.addEventListener('touchstart', (e) => {
+      if(!isMobile()) return;
+      startX = e.touches[0].clientX;
+      deltaX = 0;
+    }, {passive: true});
+    
+    track.addEventListener('touchmove', (e) => {
+      if(!isMobile()) return;
+      deltaX = e.touches[0].clientX - startX;
+    }, {passive: true});
+    
+    track.addEventListener('touchend', () => {
+      if(!isMobile()) return;
+      if(Math.abs(deltaX) > 50) {
+        if(deltaX > 0) {
+          prevSlide();
+        } else {
+          nextSlide();
+        }
+      }
+    });
+    
+    // Initialize
+    handleResize();
   })();
 </script>
 
