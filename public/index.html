@@ -195,80 +195,58 @@
         grid-column: 1 / -1 !important;
       }
     }
-    /* ===== Journey Slider ===== */
-.journey-carousel{
+    /* ===== Journey Slider (Clean) ===== */
+.journey-swiper {
   position: relative;
   overflow: hidden;
-  padding: 16px;
 }
 
-.journey-track{
+.journey-wrapper {
   display: flex;
-  transition: transform .6s ease;
+  transition: transform 0.6s ease;
   will-change: transform;
 }
 
-.journey-slide{
+.journey-slide {
   flex: 0 0 100%;
-  min-height: clamp(280px, 42vw, 420px); /* Increased height to better accommodate images */
-  margin: 0 0; /* no side gap so 100% math is exact */
-  display: grid;
-  place-items: center;
-  border-radius: 16px;
-  background: var(--accent-100);
-  border: 1px solid var(--accent-200);
-  box-shadow: 0 10px 30px rgba(17,24,39,.06) inset;
-  overflow: hidden;
-  padding: 16px; /* Add some padding to prevent image touching edges */
+  margin: 0;
 }
 
-.journey-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* Changed to contain to prevent cropping */
-  display: block;
-  max-height: 100%;
+.journey-prev,
+.journey-next {
+  transition: all 0.2s ease;
+  font-size: 14px;
+  font-weight: 600;
 }
 
-/* Navigation arrows */
-.journey-nav{
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px; height: 40px;
-  border-radius: 9999px;
-  background: #fff;
-  border: 1px solid var(--accent-100);
-  box-shadow: 0 6px 16px rgba(0,0,0,.08);
-  display: grid; place-items: center;
-  font-size: 24px; line-height: 1;
-  color: var(--accent-600);
-  transition: transform .15s ease, box-shadow .15s ease;
-}
-.journey-nav:hover{ transform: translateY(-50%) scale(1.04); box-shadow:0 10px 24px rgba(0,0,0,.1); }
-.journey-nav.prev{ left: 12px; }
-.journey-nav.next{ right: 12px; }
-
-/* Dots */
-.journey-dots{
-  display:flex; gap:8px; justify-content:center; align-items:center;
-  position:absolute; left:0; right:0; bottom:14px;
-}
-.journey-dots button{
-  width:8px; height:8px; border-radius:9999px;
-  background:#cfd6ff; border:none;
-  transition: transform .15s ease, background .15s ease;
-}
-.journey-dots button[aria-current="true"]{
-  background: var(--accent-600);
-  transform: scale(1.2);
+.journey-prev:hover,
+.journey-next:hover {
+  transform: translateY(-50%) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
-/* Pause arrows on very small phones if desired
-@media (max-width:480px){
-  .journey-nav{ display:none; }
+.journey-pagination {
+  padding-bottom: 8px;
 }
-*/
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .journey-slide figcaption {
+    width: 55% !important;
+    padding: 1.5rem !important;
+  }
+  
+  .journey-slide h3 {
+    font-size: 1.25rem !important;
+  }
+  
+  .journey-prev,
+  .journey-next {
+    width: 2rem;
+    height: 2rem;
+    font-size: 12px;
+  }
+}
     /* ===== Polished Topbar + Sticky Glass Header ===== */
 
 /* Make header sticky, give breathing room above the hero */
@@ -565,23 +543,107 @@
 
       </div>
     </div>
-<!-- Journey Slider (place directly after the hero box) -->
-<section class="wrap mt-10">
-  <div class="journey-carousel rounded-3xl shadow-soft" style="background:var(--accent-50);border:1px solid var(--accent-100);">
-    <div id="journeyTrack" class="journey-track">
-      <div class="journey-slide"> <img src="uploads/journey-slides/slide1.jpg" alt="Journey 1"></div>
-      <div class="journey-slide"> <img src="uploads/journey-slides/slide2.jpg" alt="Journey 2"></div>
-      <div class="journey-slide"> <img src="uploads/journey-slides/slide3.jpg" alt="Journey 3"></div>
-      <div class="journey-slide"> <img src="uploads/journey-slides/slide4.jpg" alt="Journey 4"></div>
-      <div class="journey-slide"> <img src="uploads/journey-slides/slide5.jpg" alt="Journey 5"></div>
-      <div class="journey-slide"> <img src="uploads/journey-slides/slide6.jpg" alt="Journey 6"></div>
+<!-- Journey (clean slider) -->
+<section id="journey" class="mt-16">
+  <div class="mx-auto max-w-6xl">
+    <!-- single outer frame, no nested boxes -->
+    <div class="relative rounded-3xl bg-white/35 backdrop-blur-xl ring-1 ring-black/5 shadow-[0_12px_36px_rgba(31,38,135,.14)] p-0">
+      <div class="journey-swiper">
+        <div class="journey-wrapper">
+          <!-- Slide 1 -->
+          <div class="journey-slide">
+            <figure class="relative aspect-[16/6] overflow-hidden rounded-3xl">
+              <!-- full-bleed image -->
+              <img src="/uploads/journey-slides/slide1.jpg" alt="You want to master the Olympiad" class="absolute inset-0 h-full w-full object-cover">
+              <!-- soft left overlay for text (no card borders) -->
+              <figcaption class="absolute inset-y-0 left-0 w-[42%] bg-gradient-to-r from-white/85 to-white/0 p-8 md:p-12 flex items-center">
+                <div>
+                  <h3 class="text-2xl md:text-3xl font-semibold text-slate-900">You want to master the Olympiad</h3>
+                  <p class="mt-2 text-slate-600">But the path feels unclear.</p>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="journey-slide">
+            <figure class="relative aspect-[16/6] overflow-hidden rounded-3xl">
+              <img src="/uploads/journey-slides/slide2.jpg" alt="So many resources, no clear plan" class="absolute inset-0 h-full w-full object-cover">
+              <figcaption class="absolute inset-y-0 left-0 w-[42%] bg-gradient-to-r from-white/85 to-white/0 p-8 md:p-12 flex items-center">
+                <div>
+                  <h3 class="text-2xl md:text-3xl font-semibold text-slate-900">So many resources, no clear plan</h3>
+                  <p class="mt-2 text-slate-600">Topics feel scattered; it's hard to measure progress.</p>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="journey-slide">
+            <figure class="relative aspect-[16/6] overflow-hidden rounded-3xl">
+              <img src="/uploads/journey-slides/slide3.jpg" alt="Join our structured program" class="absolute inset-0 h-full w-full object-cover">
+              <figcaption class="absolute inset-y-0 left-0 w-[42%] bg-gradient-to-r from-white/85 to-white/0 p-8 md:p-12 flex items-center">
+                <div>
+                  <h3 class="text-2xl md:text-3xl font-semibold text-slate-900">Join our structured program</h3>
+                  <p class="mt-2 text-slate-600">Get a clear roadmap with expert mentorship.</p>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="journey-slide">
+            <figure class="relative aspect-[16/6] overflow-hidden rounded-3xl">
+              <img src="/uploads/journey-slides/slide4.jpg" alt="Practice with real contest problems" class="absolute inset-0 h-full w-full object-cover">
+              <figcaption class="absolute inset-y-0 left-0 w-[42%] bg-gradient-to-r from-white/85 to-white/0 p-8 md:p-12 flex items-center">
+                <div>
+                  <h3 class="text-2xl md:text-3xl font-semibold text-slate-900">Practice with real contest problems</h3>
+                  <p class="mt-2 text-slate-600">Build skills through targeted practice sessions.</p>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+
+          <!-- Slide 5 -->
+          <div class="journey-slide">
+            <figure class="relative aspect-[16/6] overflow-hidden rounded-3xl">
+              <img src="/uploads/journey-slides/slide5.jpg" alt="Get personalized feedback" class="absolute inset-0 h-full w-full object-cover">
+              <figcaption class="absolute inset-y-0 left-0 w-[42%] bg-gradient-to-r from-white/85 to-white/0 p-8 md:p-12 flex items-center">
+                <div>
+                  <h3 class="text-2xl md:text-3xl font-semibold text-slate-900">Get personalized feedback</h3>
+                  <p class="mt-2 text-slate-600">1:1 mentorship to accelerate your growth.</p>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+
+          <!-- Slide 6 -->
+          <div class="journey-slide">
+            <figure class="relative aspect-[16/6] overflow-hidden rounded-3xl">
+              <img src="/uploads/journey-slides/slide6.jpg" alt="Achieve your Olympiad goals" class="absolute inset-0 h-full w-full object-cover">
+              <figcaption class="absolute inset-y-0 left-0 w-[42%] bg-gradient-to-r from-white/85 to-white/0 p-8 md:p-12 flex items-center">
+                <div>
+                  <h3 class="text-2xl md:text-3xl font-semibold text-slate-900">Achieve your Olympiad goals</h3>
+                  <p class="mt-2 text-slate-600">Medal in national and international competitions.</p>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+
+        </div>
+
+        <!-- Floating arrows (no extra boxes) -->
+        <button class="journey-prev absolute left-3 top-1/2 -translate-y-1/2 z-10 grid h-10 w-10 place-items-center rounded-full bg-white text-slate-700 shadow-lg ring-1 ring-black/5 hover:bg-indigo-50" aria-label="Previous slide">
+          &#10094;
+        </button>
+        <button class="journey-next absolute right-3 top-1/2 -translate-y-1/2 z-10 grid h-10 w-10 place-items-center rounded-full bg-white text-slate-700 shadow-lg ring-1 ring-black/5 hover:bg-indigo-50" aria-label="Next slide">
+          &#10095;
+        </button>
+      </div>
+
+      <!-- Dots below, centered -->
+      <div class="journey-pagination absolute -bottom-6 left-1/2 -translate-x-1/2 flex gap-2" aria-label="Slide indicators"></div>
     </div>
-
-    <!-- Controls (optional; you can remove if you want it purely auto) -->
-    <button class="journey-nav prev" aria-label="Previous slide">‹</button>
-    <button class="journey-nav next" aria-label="Next slide">›</button>
-
-    <div class="journey-dots" id="journeyDots" aria-label="Slide indicators"></div>
   </div>
 </section>
 
@@ -748,19 +810,20 @@
   </footer>
   <script>
 (function(){
-  const track = document.getElementById('journeyTrack');
-  if(!track) return;
+  const wrapper = document.querySelector('.journey-wrapper');
+  if(!wrapper) return;
 
-  const slides = Array.from(track.children);
+  const slides = Array.from(wrapper.children);
   const total = slides.length;
   let index = 0;
   let timer;
 
   // Build dots
-  const dotsWrap = document.getElementById('journeyDots');
+  const dotsWrap = document.querySelector('.journey-pagination');
   const dots = slides.map((_, i) => {
     const b = document.createElement('button');
     b.type = 'button';
+    b.className = 'w-2 h-2 rounded-full bg-white/60 hover:bg-white transition-all duration-200';
     b.setAttribute('aria-label', `Go to slide ${i+1}`);
     b.addEventListener('click', () => goTo(i, true));
     dotsWrap.appendChild(b);
@@ -768,8 +831,14 @@
   });
 
   function render(){
-    track.style.transform = `translateX(-${index * 100}%)`;
-    dots.forEach((d,i)=> d.setAttribute('aria-current', i===index ? 'true' : 'false'));
+    wrapper.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((d,i)=> {
+      if(i === index) {
+        d.className = 'w-2 h-2 rounded-full bg-white scale-125 transition-all duration-200';
+      } else {
+        d.className = 'w-2 h-2 rounded-full bg-white/60 hover:bg-white transition-all duration-200';
+      }
+    });
   }
 
   function next(){ index = (index + 1) % total; render(); }
@@ -782,13 +851,13 @@
   function restart(){ stop(); start(); }
 
   // Controls
-  const prevBtn = document.querySelector('.journey-nav.prev');
-  const nextBtn = document.querySelector('.journey-nav.next');
+  const prevBtn = document.querySelector('.journey-prev');
+  const nextBtn = document.querySelector('.journey-next');
   prevBtn?.addEventListener('click', () => { prev(); restart(); });
   nextBtn?.addEventListener('click', () => { next(); restart(); });
 
   // Pause on hover (desktop)
-  const carousel = prevBtn?.parentElement || track.parentElement;
+  const carousel = document.querySelector('.journey-swiper');
   carousel.addEventListener('mouseenter', stop);
   carousel.addEventListener('mouseleave', start);
 
@@ -816,38 +885,6 @@
     window.addEventListener('scroll', onScroll, {passive:true});
   })();
 </script>
-<script>
-  // Mosaic Interactions
-  (function() {
-    const blocks = document.querySelectorAll('.mosaic-block');
-    
-    blocks.forEach(block => {
-      block.addEventListener('mouseenter', () => {
-        const symbol = block.querySelector('.mosaic-symbol');
-        if (symbol) {
-          symbol.style.transform = 'scale(1.1)';
-        }
-      });
-      
-      block.addEventListener('mouseleave', () => {
-        const symbol = block.querySelector('.mosaic-symbol');
-        if (symbol) {
-          symbol.style.transform = 'scale(1)';
-        }
-      });
 
-      // Add focus styles for accessibility
-      block.addEventListener('focus', () => {
-        block.style.outline = '2px solid var(--accent-600)';
-        block.style.outlineOffset = '2px';
-      });
-
-      block.addEventListener('blur', () => {
-        block.style.outline = '';
-        block.style.outlineOffset = '';
-      });
-    });
-  })();
-</script>
 </body>
 </html>
