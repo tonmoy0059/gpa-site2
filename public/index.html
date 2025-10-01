@@ -464,50 +464,105 @@
   </header>
 
   <main class="pt-16">
-    <div class="wrap">
-      <!-- Hero -->
-<section class="hero-fit rounded-3xl p-6 md:p-10 shadow-soft" style="background:var(--accent-50);border:1px solid var(--accent-100);">
-        <div class="grid lg:grid-cols-2 gap-10 items-start w-full" style="padding-top: 20px;">
-
-          <!-- LEFT -->
-          <div style="margin-top: 60px;">
-            <div class="kicker text-xs mb-3">BEGINNER → ADVANCED</div>
-            <h1 class="headline text-4xl md:text-5xl">
-              Which <em>Olympiad</em><br>do you want to master?
-            </h1>
-            <div class="mt-8 grid grid-cols-2 gap-3 max-w-md">
-              <a href="/courses.html#maths" class="chip"><span>π</span><span>Maths</span></a>
-              <a href="/courses.html#economics" class="chip"><span>₮</span><span>Economics</span></a>
-              <a href="/courses.html#earth" class="chip"><span>🌍</span><span>Earth Science</span></a>
-              <a href="/courses.html#physics" class="chip"><span>E=mc²</span><span>Physics</span></a>
-              <a href="/courses.html#chess" class="chip"><span>♖</span><span>Chess</span></a>
-              <a href="/courses.html#informatics" class="chip"><span>⌘</span><span>Informatics</span></a>
-            </div>
-          </div>
-
-          <!-- Modern Mosaic Layout -->
-          <div class="mosaic-olympiad mx-auto">
-            <a href="/courses.html#maths" class="mosaic-block block-maths" aria-label="Mathematics Olympiad">
-              <img src="/uploads/icons/pie.png" alt="Mathematics" class="mosaic-symbol" style="width: 100%; height: 100%; object-fit: cover;">
-            </a>
-            <a href="/courses.html#physics" class="mosaic-block block-informatics" aria-label="Physics Olympiad">
-              <img src="/uploads/icons/physics.png" alt="Physics" class="mosaic-symbol" style="width: 100%; height: 100%; object-fit: cover;">
-            </a>
-            <a href="/courses.html#economics" class="mosaic-block block-economics" aria-label="Economics Olympiad">
-              <img src="/uploads/icons/econ.png" alt="Economics" class="mosaic-symbol" style="width: 100%; height: 100%; object-fit: cover;">
-            </a>
-            <a href="/courses.html#informatics" class="mosaic-block block-earth" aria-label="Informatics Olympiad">
-              <img src="/uploads/icons/info.png" alt="Informatics" class="mosaic-symbol" style="width: 100%; height: 100%; object-fit: cover;">
-            </a>
-            <a href="/courses.html#earth" class="mosaic-block block-physics" aria-label="Earth Science Olympiad">
-              <img src="/uploads/icons/earth.png" alt="Earth Science" class="mosaic-symbol" style="width: 100%; height: 100%; object-fit: cover;">
-            </a>
-            <a href="/courses.html#chess" class="mosaic-block block-chess" aria-label="Chess Olympiad">
-              <img src="/uploads/icons/chess.png" alt="Chess" class="mosaic-symbol" style="width: 100%; height: 100%; object-fit: cover;">
-            </a>
-          </div>
+    <!-- Hero -->
+    <section class="relative isolate py-16 md:py-24 min-h-[70vh] grid place-items-center" aria-labelledby="hero-heading">
+      <div class="absolute inset-0 -z-10 bg-gradient-to-b from-[#EFF3FF] via-[#E9ECFF] to-[#DCE6FF]"></div>
+      <div class="absolute inset-0 -z-10 [background:radial-gradient(60%_40%_at_50%_-20%,rgba(99,102,241,0.14),transparent_70%)]"></div>
+      
+      <div class="wrap">
+        <div class="mx-auto max-w-5xl rounded-3xl p-10 md:p-14 bg-white/55 backdrop-blur-xl ring-1 ring-black/5 shadow-[0_10px_30px_rgba(31,38,135,.18)]">
+          <h1 id="hero-heading" class="text-4xl md:text-6xl font-extrabold tracking-tight text-gpa-deep">
+            Which <span class="bg-gradient-to-r from-indigo-500 via-blue-500 to-violet-400 bg-clip-text text-transparent">Olympiad</span><br class="hidden md:block"> do you want to master?
+          </h1>
+          <p class="text-slate-600/90 md:text-lg mt-4">
+            Beginner → Advanced courses with focused practice & 1:1 mentorship.
+          </p>
+          <a href="/courses.html#enroll"
+             class="inline-flex items-center mt-6 md:mt-8 px-6 py-3 rounded-full text-white font-semibold shadow-lg
+                    bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500
+                    focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-300">
+            Enroll Now
+          </a>
         </div>
-      </section>
+      </div>
+    </section>
+
+    <!-- Course Cards -->
+    <div class="wrap">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
+        
+        <a href="/course-informatics.html"
+           class="card rounded-2xl p-6 hover:shadow-soft transition block cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#6D5AE6]/40">
+          <div class="flex items-start justify-between">
+            <h2 class="text-2xl font-semibold text-gpa-deep leading-tight">
+              Informatics<br/>Olympiad Details
+            </h2>
+            <div class="h-10 w-10 rounded-full border border-[color:var(--bg2)] grid place-items-center"></div>
+          </div>
+          <img src="/uploads/courses/informatics2.jpg" alt="Informatics" class="poster mt-6">
+          <p class="mt-4 text-gpa-deep/80">
+            Algorithmic thinking, data structures, problem-solving patterns, and IOI-style mock contests.
+          </p>
+        </a>
+
+        <a href="/course-maths.html"
+           class="card rounded-2xl p-6 hover:shadow-soft transition block cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#6D5AE6]/40">
+          <div class="flex items-start justify-between">
+            <h2 class="text-2xl font-semibold text-gpa-deep leading-tight">
+              Maths<br/>Olympiad Details
+            </h2>
+            <div class="h-10 w-10 rounded-full border border-[color:var(--bg2)] grid place-items-center"></div>
+          </div>
+          <img src="/uploads/courses/maths2.jpg" alt="Maths" class="poster mt-6">
+          <p class="mt-4 text-gpa-deep/80">
+            Number theory, combinatorics, geometry, and algebra—with proofs and problem walkthroughs.
+          </p>
+        </a>
+
+        <a href="/course-physics.html"
+           class="card rounded-2xl p-6 hover:shadow-soft transition block cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#6D5AE6]/40">
+          <div class="flex items-start justify-between">
+            <h2 class="text-2xl font-semibold text-gpa-deep leading-tight">
+              Physics<br/>Olympiad Details
+            </h2>
+            <div class="h-10 w-10 rounded-full border border-[color:var(--bg2)] grid place-items-center"></div>
+          </div>
+          <img src="/uploads/courses/physics2.jpg" alt="Physics" class="poster mt-6">
+          <p class="mt-4 text-gpa-deep/80">
+            Mechanics, E&amp;M, thermodynamics, optics, and modern physics with rigorous problem sets.
+          </p>
+        </a>
+
+        <a href="/course-neo.html"
+           class="card rounded-2xl p-6 hover:shadow-soft transition block cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#6D5AE6]/40">
+          <div class="flex items-start justify-between">
+            <h2 class="text-2xl font-semibent text-gpa-deep leading-tight">
+              NEO<br/>Olympiad Details
+            </h2>
+            <div class="h-10 w-10 rounded-full border border-[color:var(--bg2)] grid place-items-center"></div>
+          </div>
+          <img src="/uploads/courses/neo2.jpg" alt="NEO" class="poster mt-6">
+          <p class="mt-4 text-gpa-deep/80">
+            Interdisciplinary problem-solving with emphasis on logic, modeling, and real-world scenarios.
+          </p>
+        </a>
+
+        <a href="/course-economics.html"
+           class="card rounded-2xl p-6 hover:shadow-soft transition block cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#6D5AE6]/40">
+          <div class="flex items-start justify-between">
+            <h2 class="text-2xl font-semibold text-gpa-deep leading-tight">
+              Economics<br/>Olympiad Details
+            </h2>
+            <div class="h-10 w-10 rounded-full border border-[color:var(--bg2)] grid place-items-center"></div>
+          </div>
+          <img src="/uploads/courses/economics2.jpg" alt="Economics" class="poster mt-6">
+          <p class="mt-4 text-gpa-deep/80">
+            Micro &amp; macro fundamentals, game theory, data interpretation, and policy analysis.
+          </p>
+        </a>
+
+      </div>
+    </div>
 <!-- Journey Slider (place directly after the hero box) -->
 <section class="wrap mt-10">
   <div class="journey-carousel rounded-3xl shadow-soft" style="background:var(--accent-50);border:1px solid var(--accent-100);">
