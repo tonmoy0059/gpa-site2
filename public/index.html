@@ -451,17 +451,30 @@
   top: 100%;
   left: 0;
   right: 0;
-  background: rgba(255,255,255,.95);
+  background: rgba(255,255,255,.98);
   backdrop-filter: blur(12px);
   border: 1px solid var(--accent-100);
   border-radius: 16px;
   margin-top: 8px;
   padding: 16px;
-  box-shadow: 0 12px 32px rgba(11,20,55,.15);
+  box-shadow: 0 12px 32px rgba(11,20,55,.2);
+  z-index: 100;
+  animation: slideDown 0.3s ease;
 }
 
 .mobile-nav.active {
   display: block;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .mobile-nav ul {
@@ -496,11 +509,12 @@
 @media (max-width: 768px) {
   .mobile-menu-btn {
     display: flex;
+    z-index: 101;
   }
   
-  .glass-nav ul,
-  .glass-nav .btn-ghost {
-    display: none;
+  .glass-nav > ul,
+  .glass-nav > .btn-ghost {
+    display: none !important;
   }
   
   .glass-nav {
@@ -510,17 +524,28 @@
   .mentor-carousel {
     overflow: hidden;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0 60px; /* Space for navigation buttons */
   }
   
   .mentor-track {
     animation: none !important;
     transition: transform 0.3s ease;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
   }
   
   .mentor-card {
-    flex: 0 0 100%;
-    max-width: 320px;
+    flex: 0 0 calc(100% - 120px); /* Account for button padding */
+    max-width: 300px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   
   .mentor-nav-btn {
@@ -568,6 +593,16 @@
   
   .mentor-dot.active {
     background: var(--accent-600);
+  }
+}
+
+/* Desktop styles - hide mobile elements */
+@media (min-width: 769px) {
+  .mobile-menu-btn,
+  .mobile-nav,
+  .mentor-nav-btn,
+  .mentor-indicators {
+    display: none !important;
   }
 }
 
@@ -1041,9 +1076,15 @@
     const menuBtn = document.querySelector('.mobile-menu-btn');
     const mobileNav = document.querySelector('.mobile-nav');
     
-    if(!menuBtn || !mobileNav) return;
+    if(!menuBtn || !mobileNav) {
+      console.log('Mobile navigation elements not found');
+      return;
+    }
     
-    menuBtn.addEventListener('click', () => {
+    menuBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      console.log('Mobile menu clicked');
       menuBtn.classList.toggle('active');
       mobileNav.classList.toggle('active');
     });
@@ -1054,6 +1095,15 @@
         menuBtn.classList.remove('active');
         mobileNav.classList.remove('active');
       }
+    });
+    
+    // Close menu when clicking on navigation links
+    const mobileNavLinks = mobileNav.querySelectorAll('a');
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        menuBtn.classList.remove('active');
+        mobileNav.classList.remove('active');
+      });
     });
   })();
   
@@ -1116,6 +1166,7 @@
     function handleResize() {
       if(isMobile()) {
         track.style.animation = 'none';
+        track.style.justifyContent = 'flex-start';
         currentIndex = 0;
         goToSlide(0);
         createIndicators();
@@ -1125,6 +1176,7 @@
       } else {
         track.style.animation = 'scrollMentors 30s linear infinite';
         track.style.transform = 'translateX(0)';
+        track.style.justifyContent = '';
         prevBtn.style.display = 'none';
         nextBtn.style.display = 'none';
         indicatorsContainer.style.display = 'none';
