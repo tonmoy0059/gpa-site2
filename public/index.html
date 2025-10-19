@@ -201,8 +201,7 @@
     /* ===== Journey Slider (Clean) ===== */
 .journey-swiper {
   position: relative;
-  overflow: visible;
-  padding: 20px 0;
+  overflow: hidden;
 }
 
 .journey-wrapper {
@@ -214,25 +213,6 @@
 .journey-slide {
   flex: 0 0 100%;
   margin: 0;
-  padding: 0 10px;
-}
-
-.journey-slide figure {
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 10px 40px rgba(64,84,255,0.15);
-  transition: all 0.3s ease;
-}
-
-.journey-slide figure:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 60px rgba(64,84,255,0.25);
-}
-
-.journey-slide img {
-  display: block;
-  width: 100%;
-  height: auto;
 }
 
 .journey-prev,
@@ -250,8 +230,6 @@
 
 .journey-pagination {
   padding-bottom: 8px;
-  position: relative;
-  margin-top: 20px;
 }
 
 /* Mobile adjustments */
@@ -828,64 +806,62 @@
 <!-- Journey (clean slider) -->
 <section id="journey" class="mt-16">
   <div class="mx-auto max-w-6xl">
-    <div class="relative">
-      <div class="journey-swiper">
-        <div class="journey-wrapper">
-          <!-- Slide 1 -->
-          <div class="journey-slide">
-            <figure class="relative aspect-[16/6]">
-              <img src="/uploads/journey-slides/finalslide1.jpg" alt="Journey slide 1" loading="lazy">
-            </figure>
-          </div>
-
-          <!-- Slide 2 -->
-          <div class="journey-slide">
-            <figure class="relative aspect-[16/6]">
-              <img src="/uploads/journey-slides/finalslide2.jpg" alt="Journey slide 2" loading="lazy">
-            </figure>
-          </div>
-
-          <!-- Slide 3 -->
-          <div class="journey-slide">
-            <figure class="relative aspect-[16/6]">
-              <img src="/uploads/journey-slides/finalslide3.jpg" alt="Journey slide 3" loading="lazy">
-            </figure>
-          </div>
-
-          <!-- Slide 4 -->
-          <div class="journey-slide">
-            <figure class="relative aspect-[16/6]">
-              <img src="/uploads/journey-slides/finalslide4.jpg" alt="Journey slide 4" loading="lazy">
-            </figure>
-          </div>
-
-          <!-- Slide 5 -->
-          <div class="journey-slide">
-            <figure class="relative aspect-[16/6]">
-              <img src="/uploads/journey-slides/finalslide5.jpg" alt="Journey slide 5" loading="lazy">
-            </figure>
-          </div>
-
-          <!-- Slide 6 -->
-          <div class="journey-slide">
-            <figure class="relative aspect-[16/6]">
-              <img src="/uploads/journey-slides/finalslide6.jpg" alt="Journey slide 6" loading="lazy">
-            </figure>
-          </div>
-
+    <div class="journey-swiper">
+      <div class="journey-wrapper">
+        <!-- Slide 1 -->
+        <div class="journey-slide">
+          <figure class="relative aspect-[16/6] overflow-hidden">
+            <img src="/uploads/journey-slides/finalslide1.jpg" alt="Journey slide 1" class="h-full w-full object-contain" loading="lazy">
+          </figure>
         </div>
 
-        <!-- Floating arrows -->
-        <button class="journey-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 grid h-12 w-12 place-items-center rounded-full bg-white text-slate-700 shadow-xl ring-1 ring-black/5 hover:bg-indigo-50 hover:ring-indigo-200" aria-label="Previous slide">
-          &#10094;
-        </button>
-        <button class="journey-next absolute right-0 top-1/2 -translate-y-1/2 z-10 grid h-12 w-12 place-items-center rounded-full bg-white text-slate-700 shadow-xl ring-1 ring-black/5 hover:bg-indigo-50 hover:ring-indigo-200" aria-label="Next slide">
-          &#10095;
-        </button>
+        <!-- Slide 2 -->
+        <div class="journey-slide">
+          <figure class="relative aspect-[16/6] overflow-hidden">
+            <img src="/uploads/journey-slides/finalslide2.jpg" alt="Journey slide 2" class="h-full w-full object-contain" loading="lazy">
+          </figure>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="journey-slide">
+          <figure class="relative aspect-[16/6] overflow-hidden">
+            <img src="/uploads/journey-slides/finalslide3.jpg" alt="Journey slide 3" class="h-full w-full object-contain" loading="lazy">
+          </figure>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="journey-slide">
+          <figure class="relative aspect-[16/6] overflow-hidden">
+            <img src="/uploads/journey-slides/finalslide4.jpg" alt="Journey slide 4" class="h-full w-full object-contain" loading="lazy">
+          </figure>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="journey-slide">
+          <figure class="relative aspect-[16/6] overflow-hidden">
+            <img src="/uploads/journey-slides/finalslide5.jpg" alt="Journey slide 5" class="h-full w-full object-contain" loading="lazy">
+          </figure>
+        </div>
+
+        <!-- Slide 6 -->
+        <div class="journey-slide">
+          <figure class="relative aspect-[16/6] overflow-hidden">
+            <img src="/uploads/journey-slides/finalslide6.jpg" alt="Journey slide 6" class="h-full w-full object-contain" loading="lazy">
+          </figure>
+        </div>
+
       </div>
 
+      <!-- Floating arrows (no extra boxes) -->
+      <button class="journey-prev absolute left-3 top-1/2 -translate-y-1/2 z-10 grid h-10 w-10 place-items-center rounded-full bg-white text-slate-700 shadow-lg ring-1 ring-black/5 hover:bg-indigo-50" aria-label="Previous slide">
+        &#10094;
+      </button>
+      <button class="journey-next absolute right-3 top-1/2 -translate-y-1/2 z-10 grid h-10 w-10 place-items-center rounded-full bg-white text-slate-700 shadow-lg ring-1 ring-black/5 hover:bg-indigo-50" aria-label="Next slide">
+        &#10095;
+      </button>
+
       <!-- Dots below, centered -->
-      <div class="journey-pagination flex gap-2 justify-center" aria-label="Slide indicators"></div>
+      <div class="journey-pagination absolute -bottom-6 left-1/2 -translate-x-1/2 flex gap-2" aria-label="Slide indicators"></div>
     </div>
   </div>
 </section>
