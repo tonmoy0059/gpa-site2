@@ -342,6 +342,39 @@
 /* Keep hero spaced nicely under the header */
 .hero-fit{ margin-top: 8px; }
 
+/* Animated scroll-down arrow */
+.scroll-down-arrow {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  cursor: pointer;
+  animation: bounce 2s infinite;
+}
+
+.scroll-down-arrow svg {
+  width: 32px;
+  height: 32px;
+  filter: drop-shadow(0 4px 8px rgba(64,84,255,0.3));
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-5px);
+  }
+}
+
+.scroll-down-arrow:hover svg {
+  filter: drop-shadow(0 6px 12px rgba(64,84,255,0.5));
+}
+
 /* Mentor Carousel */
 .mentor-carousel {
   position: relative;
@@ -659,9 +692,9 @@
     </div>
   </header>
 
-  <main class="pt-16">
+  <main class="pt-8">
     <!-- Hero -->
-    <section class="relative isolate py-16 md:py-20 min-h-[75vh] flex items-center justify-center" aria-labelledby="hero-heading">
+    <section class="relative isolate py-8 md:py-12 min-h-[75vh] flex items-center justify-center" aria-labelledby="hero-heading">
       <div class="absolute inset-0 -z-10 bg-gradient-to-b from-[#EFF3FF] via-[#E9ECFF] to-[#DCE6FF]"></div>
       <div class="absolute inset-0 -z-10 [background:radial-gradient(60%_40%_at_50%_-20%,rgba(99,102,241,0.14),transparent_70%)]"></div>
       
@@ -683,10 +716,17 @@
           </div>
         </div>
       </div>
+      
+      <!-- Animated Scroll Down Arrow -->
+      <a href="#courses" class="scroll-down-arrow" aria-label="Scroll down to courses">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="text-indigo-600">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
+      </a>
     </section>
 
     <!-- Course Cards -->
-    <div class="wrap">
+    <div id="courses" class="wrap">
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
         
         <a href="/course-informatics.html"
